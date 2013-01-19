@@ -1,4 +1,5 @@
 Banksearch::Application.routes.draw do
+  resources :banks
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
