@@ -1,5 +1,12 @@
-<h2>Models</h2>
-<% Admin::AdminController::MODELS.each do |model| %>
-  <%= link_to model, [:admin, model] %>
-<% end %>
+<main>
+  <nav>
+    <% Admin::AdminController::MODELS.each do |model| %>
+      <%= link_to model, [:admin, model] %>
+    <% end %>
+  </nav>
 
+  <button>new</button>
+  <data>
+
+  </data>
+</main>
