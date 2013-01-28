@@ -11,6 +11,7 @@
     var MelView = Mel.View.Mel = Backbone.View.extend({
 
       el: $('main'),
+      $win: $(window),
 
       events: {
         'click button': 'create'
@@ -27,6 +28,7 @@
       setSource: function (model) {
         this.dataList = new Mel.Collection[model];
         this.dataRowView = Mel.View[model];
+        this.dataEditView = Mel.View[model + "Full"];
 
         this.listenTo(this.dataList, 'add', this.addOne);
         this.listenTo(this.dataList, 'reset', this.addAll);
@@ -38,6 +40,7 @@
       addOne: function (ob) {
         var view = new this.dataRowView({model: ob});
         this.$('data').append(view.render().el);
+        this.listenTo(view, 'edit', this.editOne);
       },
 
       addAll: function () {
@@ -45,8 +48,15 @@
       },
 
       create: function () {
-        console.log('hi');
         this.dataList.create();
+      },
+
+      editOne: function (ob) {
+        var view = new this.dataEditView({model: ob});
+        view.render();
+        view.$el.hide().css({top: window.scrollY + this.$win.height()});
+        this.$el.append(view.el);
+        view.$el.show().animate({top: window.scrollY + 80}, 200);
       }
     });
 

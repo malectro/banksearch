@@ -1,5 +1,6 @@
 <main>
   <nav>
+    <div>Navigation</div>
     <% Admin::AdminController::MODELS.each do |model| %>
       <%= link_to model, [:admin, model] %>
     <% end %>

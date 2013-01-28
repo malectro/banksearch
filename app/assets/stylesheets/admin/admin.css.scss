@@ -1,0 +1,57 @@
+$blue: #339;
+
+html, body, h1, h2, h3, a {
+  margin: 0; padding: 0; font-family: inherit; font-size: inherit;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: black;
+}
+
+h1 {
+  position: fixed;
+  width: 100%;
+  padding: 5px 20px;
+  font-size: 24px;
+  background: #000;
+  color: white;
+}
+
+a {
+  cursor: pointer;
+  color: $blue;
+}
+
+nav {
+  position: fixed;
+  top: 44px;
+  left: 0;
+  padding: 10px 20px;
+  width: 100px;
+  div {
+    font-weight: bold;
+  }
+  a {
+    display: block;
+  }
+}
+
+main {
+  display: block;
+  padding: 54px 10px 0 140px;
+}
+
+panel {
+  position: absolute;
+  top: 50px;
+  left: 200px;
+  width: 800px;
+  padding: 10px;
+  z-index: 5;
+  background: white;
+  box-shadow: 0 0 10px #000;
+}
+
