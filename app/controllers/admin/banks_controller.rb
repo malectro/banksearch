@@ -21,16 +21,16 @@ class Admin::BanksController < Admin::AdminController
   def update
     @bank = Bank.find(params[:id])
     if @bank.update_attributes(params[:bank])
-      render json: @bank, status: :updated, location: @bank
+      render json: @bank, location: @bank
     else
       render json: @bank.errors, status: :failed
     end
   end
 
-  def delete
+  def destroy
     @bank = Bank.find(params[:id])
     if @bank.destroy
-      render json: @bank, status: :deleted
+      render json: @bank
     else
       render json: @bank.errors, status: :failed
     end

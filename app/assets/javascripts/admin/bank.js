@@ -1,6 +1,9 @@
 (function (Mel) {
   var Bank = Mel.Model.Bank = Backbone.Model.extend({
     type: 'Bank',
+
+    idAttribute: '_id',
+
     defaults: function () {
       return {
         name: 'New Bank',
@@ -54,8 +57,12 @@
 
     destroy: function () {
       var yep = confirm('Are you sure? Such is this ephemeral life.');
+      var self = this;
       if (yep) {
         this.model.destroy();
+        this.$el.fadeOut(function () {
+          self.remove();
+        });
       }
     },
 

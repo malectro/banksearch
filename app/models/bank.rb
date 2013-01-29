@@ -15,5 +15,4 @@ class Bank
   field :gid, as: :government_id, type: Boolean
   field :ssitn, type: Symbol
   field :notes, type: String
-
 end
