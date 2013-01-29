@@ -13,7 +13,7 @@ class Bank
   field :od, as: :opening_deposit, type: Float
   field :of, as: :opening_fee, type: Float
   field :gid, as: :government_id, type: Boolean
-  field :ssitn, type: Integer
+  field :ssitn, type: Symbol
   field :notes, type: String
 
 end

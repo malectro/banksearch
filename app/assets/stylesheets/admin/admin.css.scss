@@ -18,6 +18,7 @@ h1 {
   font-size: 24px;
   background: #000;
   color: white;
+  z-index: 10;
 }
 
 a {
@@ -53,5 +54,19 @@ panel {
   z-index: 5;
   background: white;
   box-shadow: 0 0 10px #000;
+}
+
+form {
+  label {
+  }
+  input[type="text"] {
+    display: block;
+    width: 300px;
+  }
+  textarea {
+    display: block;
+    width: 300px;
+    height: 100px;
+  }
 }
 

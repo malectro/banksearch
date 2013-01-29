@@ -17,8 +17,18 @@
 
     model: Bank,
 
-    url: '/admin/banks'
+    url: '/admin/banks',
 
+    comparator: function (bank) {
+      return bank.get('name');
+    },
+
+    search: function (query) {
+      query = query.toLowerCase();
+      return this.filter(function (bank) {
+        return bank.get('name').toLowerCase().match(query) || bank.get('address').toLowerCase().match(query);
+      });
+    }
   });
 
   // should probably separete out the mvc into different files
@@ -30,7 +40,7 @@
 
     events: {
       'click .edit': 'edit',
-      'click .delete': 'remove'
+      'click .delete': 'destroy'
     },
 
     initialize: function () {
@@ -42,7 +52,7 @@
       return this;
     },
 
-    remove: function () {
+    destroy: function () {
       var yep = confirm('Are you sure? Such is this ephemeral life.');
       if (yep) {
         this.model.destroy();
@@ -58,20 +68,41 @@
 
     tagName: 'panel',
 
-    template: null,
-
     events: {
+      'submit form': 'save',
+      'click': 'block'
     },
 
-    initialize: function () {
+    template: null,
 
+    initialize: function () {
+      var self = this;
+      _.defer(function () {
+        self.listenTo(Mel.App, 'anyClick', self.close);
+      });
     },
 
     render: function () {
-      this.$el.html(Mel.tmpl('bank_form', this.model.attributes));
+      this.$el.hide().html(Mel.tmpl('bank_form', this.model.attributes));
       return this;
     },
 
+    save: function (e) {
+      e.preventDefault();
+      this.model.save(this.$('form').serializeObject());
+      this.close();
+    },
+
+    close: function () {
+      var self = this;
+      this.$el.animate({top: '+1000'}, 200, function () {
+        self.remove();
+      });
+    },
+
+    block: function (e) {
+      e.stopPropagation();
+    }
 
   });
 
