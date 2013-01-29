@@ -102,7 +102,7 @@
 
     close: function () {
       var self = this;
-      this.$el.animate({top: '+1000'}, 200, function () {
+      this.$el.animate({top: '+1000', opacity: 0}, 200, function () {
         self.remove();
       });
     },

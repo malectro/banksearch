@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require underscore
+//= require backbone
+//= require_dir .
+//= require_dir models
+//= require_dir templates
+//= require_dir views

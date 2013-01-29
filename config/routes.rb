@@ -1,7 +1,7 @@
 Banksearch::Application.routes.draw do
-  root to: 'banks#index'
+  root to: 'home#index'
 
-  resources :banks
+  resources :banks, only: [:index, :show]
 
   namespace :admin do
     root to: 'admin#index'
