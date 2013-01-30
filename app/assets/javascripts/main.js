@@ -3,8 +3,12 @@
     Model: {}, View: {}, List: {}
   };
 
+  BS.tmpl = function (name, context) {
+    return JST['templates/' + name](context);
+  };
+
   $(function () {
-    var BankSearch = Backbone.view.extend({
+    var BankSearch = Backbone.View.extend({
       el: $('main'),
 
       $search: $('.search'),
@@ -22,14 +26,30 @@
         this.banks.fetch();
       },
 
+      clear: function () {
+
+      },
+
       filter: function () {
-        var html = '';
+        var html = '',
+            banks = [];
 
         this.query = this.$search.find('.query').val();
 
         if (this.query) {
-
+          banks = this.banks.search(this.query);
         }
+        else {
+          banks = this.banks.models;
+        }
+
+        banks = banks.slice(0, 10);
+
+        _.each(banks, function (bank) {
+          html += BS.tmpl('bank_row', bank.attributes);
+        });
+
+        this.$('.bank-list').html(html);
       }
     });
 

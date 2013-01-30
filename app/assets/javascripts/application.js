@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
-//= require_dir .
-//= require_dir models
-//= require_dir templates
-//= require_dir views
+//= require_directory .
+//= require_directory ./models
+//= require_directory ./templates
+//= require_directory ./views
