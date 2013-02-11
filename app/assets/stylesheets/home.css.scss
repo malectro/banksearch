@@ -5,6 +5,7 @@ h1 {
 }
 
 main {
+  position: relative;
   display: block;
   width: 1000px;
   margin: 0 auto;
@@ -21,6 +22,18 @@ main {
       outline: none;
       box-shadow: 0 0 15px #009;
     }
+  }
+}
+
+.g-map {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  height: 500px;
+  width: 500px;
+  > div {
+    height: 100%;
+    width: 100%;
   }
 }
 
