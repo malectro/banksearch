@@ -1,0 +1,30 @@
+h1 {
+  font-size: 48px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+main {
+  display: block;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.search {
+  .query {
+    width: 980px;
+    padding: 5px 10px;
+    font-size: 18px;
+    border: none;
+    box-shadow: 0 0 10px #000;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 15px #009;
+    }
+  }
+}
+
+.bank-row {
+  margin-top: 5px;
+  font-size: 14px;
+}

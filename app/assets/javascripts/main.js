@@ -43,7 +43,7 @@
           banks = this.banks.models;
         }
 
-        banks = banks.slice(0, 10);
+        banks = banks.slice(0, 30);
 
         _.each(banks, function (bank) {
           html += BS.tmpl('bank_row', bank.attributes);
