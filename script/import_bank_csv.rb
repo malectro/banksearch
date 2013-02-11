@@ -4,7 +4,7 @@ ssitn_map = {
   "2" => :ss_or_itn
 }
 
-File.open('/Users/qarren/Sites/banksearch/safestart.csv', 'r') do |file|
+File.open(Rails.root.join('db', 'safestart.csv'), 'r') do |file|
   #first line is the header
   file.gets
 
