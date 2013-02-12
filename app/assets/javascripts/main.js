@@ -20,7 +20,7 @@
 
       initialize: function () {
         this.banks = new BS.List.Bank;
-        this.map = new BS.View.Map({el: $('.g-map')});
+        this.map = new BS.View.Map({el: $('.g-map'), app: this});
 
         this.listenTo(this.banks, 'reset', this.filter);
 
@@ -38,19 +38,20 @@
         this.query = this.$search.find('.query').val();
 
         if (this.query) {
-          banks = this.banks.search(this.query);
+          this.filteredBanks = this.banks.search(this.query);
         }
         else {
-          banks = this.banks.models;
+          this.filteredBanks = this.banks.clone();
         }
 
-        banks = banks.slice(0, 30);
+        banks = this.filteredBanks.slice(0, 30);
 
         _.each(banks, function (bank) {
           html += BS.tmpl('bank_row', bank.attributes);
         });
 
         this.$('.bank-list').html(html);
+        this.trigger('filtered', this.filteredBanks);
       }
     });
 

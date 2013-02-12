@@ -13,9 +13,9 @@
 
     search: function (query) {
       query = query.toLowerCase();
-      return this.filter(function (bank) {
+      return new BS.List.Bank(this.filter(function (bank) {
         return bank.get('name').toLowerCase().match(query) || bank.get('address').toLowerCase().match(query);
-      });
+      }));
     },
 
     geoBounds: function () {
