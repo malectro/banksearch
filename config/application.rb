@@ -58,5 +58,7 @@ module Banksearch
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.assets.precompile += ['admin/admin.js', 'admin/admin.css.scss']
   end
 end
