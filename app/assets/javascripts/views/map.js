@@ -30,6 +30,7 @@
       }
 
       this.listenTo(this.options.app, 'filtered', _.debounce(this.updateBounds, 1000));
+      this.listenTo(this.options.app, 'clickBank', this.showInfo);
     },
 
     geoPosition: function () {
@@ -107,19 +108,25 @@
             });
 
         Gmaps.event.addListener(marker, 'click', function () {
-          self.clickMarker(marker, bank, info);
+          self.showInfo(bank);
         });
         self.markers.push(marker);
+
+        bank.mapInfo = {
+          marker: marker,
+          info: info,
+          zIndex: 20
+        };
       });
     },
 
-    clickMarker: function (marker, bank, info) {
+    showInfo: function (bank) {
       if (this.currentInfo) {
         this.currentInfo.setMap(null);
       }
 
-      info.open(this.gmap, marker);
-      this.currentInfo = info;
+      bank.mapInfo.info.open(this.gmap, bank.mapInfo.marker);
+      this.currentInfo = bank.mapInfo.info;
     }
   });
 

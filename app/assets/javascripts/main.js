@@ -15,7 +15,8 @@
       query: '',
 
       events: {
-        'keydown .search .query': 'filter'
+        'keydown .search .query': 'filter',
+        'click .bank-row': 'clickBank'
       },
 
       initialize: function () {
@@ -52,6 +53,15 @@
 
         this.$('.bank-list').html(html);
         this.trigger('filtered', this.filteredBanks);
+      },
+
+      clickBank: function (e) {
+        var id = $(e.currentTarget).data('id'),
+            bank = this.filteredBanks.get(id);
+
+        console.log(bank);
+
+        this.trigger('clickBank', bank);
       }
     });
 
