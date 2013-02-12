@@ -21,17 +21,18 @@
         return false;
       }
 
-      var geocoder = new google.maps.Geocoder;
+      var self = this,
+          geocoder = new google.maps.Geocoder;
 
       geocoder.geocode({
         address: this.get('address') + ', ' + this.get('zip')
       }, function (results, status) {
         if (status === 'OK') {
-          this.set('geo', {
+          self.set('geo', {
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng()
           });
-          this.save();
+          self.save();
           callback();
         }
       });
@@ -109,19 +110,36 @@
 
     initialize: function () {
       var self = this;
+
       _.defer(function () {
         self.listenTo(Mel.App, 'anyClick', self.close);
       });
+
+      this.listenTo(this.model, 'change', this.render);
     },
 
     render: function () {
-      this.$el.hide().html(Mel.tmpl('bank_form', this.model.attributes));
+      this.$el.hide().html(Mel.tmpl('bank_form', this.model.attributes)).show();
       return this;
     },
 
     save: function (e) {
+      var data = this.$('form').serializeObject();
+
       e.preventDefault();
-      this.model.save(this.$('form').serializeObject());
+
+      // fix geodata attributes
+      // probably should abstract this
+      if (data['geo:lat']) {
+        data['geo'] = {
+          lat: data['geo:lat'],
+          lng: data['geo:lng']
+        }
+        delete data['geo:lat'];
+        delete data['geo:lng'];
+      }
+
+      this.model.save(data);
       this.close();
     },
 
@@ -136,7 +154,7 @@
       e.stopPropagation();
     },
 
-    geocode: function () {
+    geocode: function (e) {
       var $button = this.$('.bank-geocode'),
           good;
 
@@ -148,6 +166,8 @@
         $button.attr('disabled', true).text('Geocoding...');
       }
 
+      e.preventDefault();
+      e.stopPropagation();
       return false;
     }
 

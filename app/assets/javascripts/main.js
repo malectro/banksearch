@@ -12,7 +12,6 @@
       el: $('main'),
 
       $search: $('.search'),
-      $map: $('.g-map'),
       query: '',
 
       events: {
@@ -21,17 +20,11 @@
 
       initialize: function () {
         this.banks = new BS.List.Bank;
+        this.map = new BS.View.Map({el: $('.g-map')});
 
         this.listenTo(this.banks, 'reset', this.filter);
 
         this.banks.fetch();
-
-        this.map = new google.maps.Map(this.$map.find('div')[0], {
-          center: new google.maps.LatLng(40.68661, -73.96506509999999),
-          zoom: 11,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-        this.geo();
       },
 
       clear: function () {
@@ -58,16 +51,6 @@
         });
 
         this.$('.bank-list').html(html);
-      },
-
-      geo: function () {
-        var self = this;
-
-        if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
-          navigator.geolocation.getCurrentPosition(function (pos) {
-            self.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-          });
-        }
       }
     });
 
