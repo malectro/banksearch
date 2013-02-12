@@ -1,14 +1,19 @@
 h1 {
+  position: relative;
   font-size: 48px;
   width: 1000px;
   margin: 0 auto;
+  z-index: 10;
+  text-shadow: 0 0 10px #fff;
 }
 
 main {
-  position: relative;
+  position: absolute;
   display: block;
-  width: 1000px;
-  margin: 0 auto;
+  left: 50%;
+  margin-left: -500px;
+  width: 500px;
+  z-index: 10;
 }
 
 .search {
@@ -27,17 +32,31 @@ main {
 
 .g-map {
   position: fixed;
-  top: 100px;
+  top: 0;
   right: 0;
-  height: 500px;
-  width: 500px;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
   > div {
     height: 100%;
     width: 100%;
   }
 }
+.g-map-frame {
+  position: fixed;
+  top: 115px;
+  left: 50%;
+  margin-left: 10px;
+  width: 500px;
+  height: 500px;
+  z-index: 1;
+}
 
 .bank-row {
   margin-top: 5px;
+  padding: 5px 10px;
   font-size: 14px;
+  background: white;
+  box-shadow: 0 0 5px #000;
 }
+

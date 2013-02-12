@@ -9,7 +9,7 @@
 
   $(function () {
     var BankSearch = Backbone.View.extend({
-      el: $('main'),
+      el: $('body'),
 
       $search: $('.search'),
       query: '',
