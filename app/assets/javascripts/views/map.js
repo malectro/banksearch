@@ -14,6 +14,8 @@
       lng: -73.96506509999999
     },
 
+    markers: [],
+
     initialize: function () {
       this.$mapFrame = $('.g-map-frame');
 
@@ -57,15 +59,13 @@
           pos = this.$mapFrame.position(),
           ne, sw;
 
-      console.log(JSON.stringify(bounds));
-      console.log(pos);
+      //hack
+      pos.left += 20;
 
       bounds.ne.lng += (width - this.$mapFrame.width() - pos.left) * ratioLng;
       bounds.sw.lng -= pos.left * ratioLng;
       bounds.ne.lat += pos.top * ratioLat;
       bounds.sw.lat -= (height - this.$mapFrame.height() - pos.top) * ratioLat;
-
-      console.log(JSON.stringify(bounds));
 
       ne = new Gmaps.LatLng(bounds.ne.lat, bounds.ne.lng);
       sw = new Gmaps.LatLng(bounds.sw.lat, bounds.sw.lng);
@@ -75,6 +75,27 @@
 
     updateBounds: function () {
       this.setBounds(BS.App.filteredBanks.geoBounds());
+      this.updateMarkers();
+    },
+
+    updateMarkers: function () {
+      var self = this;
+
+      _.each(this.markers, function (marker) {
+        marker.setMap(null);
+      });
+
+      this.markers = [];
+
+      BS.App.filteredBanks.each(function (bank) {
+        var geo = bank.get('geo'),
+            marker = new Gmaps.Marker({
+              map: self.gmap,
+              position: new Gmaps.LatLng(geo.lat, geo.lng)
+            });
+
+        self.markers.push(marker);
+      });
     }
   });
 
