@@ -1,6 +1,15 @@
 (function () {
   BS.Model.Bank = Backbone.Model.extend({
-    idAttribute: '_id'
+    idAttribute: '_id',
+
+    fattributes: function () {
+      var attrs = _.clone(this.attributes);
+
+      attrs.phone = ('' + attrs.phone);
+      attrs.phone = '(' + attrs.phone.slice(0, 3) + ') ' + attrs.phone.slice(3, 6) + '-' + attrs.phone.slice(6, 10);
+
+      return attrs;
+    }
   });
 
   BS.List.Bank = Backbone.Collection.extend({

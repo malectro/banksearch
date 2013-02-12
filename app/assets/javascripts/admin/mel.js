@@ -117,7 +117,12 @@
           }
           else {
             i++;
-            _.defer(start);
+            if (i < self.dataList.length) {
+              _.defer(start);
+            }
+            else {
+              done();
+            }
           }
         }
 

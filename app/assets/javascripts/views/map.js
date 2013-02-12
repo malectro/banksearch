@@ -99,11 +99,27 @@
         var geo = bank.get('geo'),
             marker = new Gmaps.Marker({
               map: self.gmap,
-              position: new Gmaps.LatLng(geo.lat, geo.lng)
+              position: new Gmaps.LatLng(geo.lat, geo.lng),
+              title: bank.get('name')
+            }),
+            info = new Gmaps.InfoWindow({
+              content: BS.tmpl('bank_bubble', bank.fattributes())
             });
 
+        Gmaps.event.addListener(marker, 'click', function () {
+          self.clickMarker(marker, bank, info);
+        });
         self.markers.push(marker);
       });
+    },
+
+    clickMarker: function (marker, bank, info) {
+      if (this.currentInfo) {
+        this.currentInfo.setMap(null);
+      }
+
+      info.open(this.gmap, marker);
+      this.currentInfo = info;
     }
   });
 
