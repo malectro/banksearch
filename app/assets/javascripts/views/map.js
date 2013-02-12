@@ -60,7 +60,7 @@
           ne, sw;
 
       //hack
-      pos.left += 20;
+      pos.left += 50;
 
       bounds.ne.lng += (width - this.$mapFrame.width() - pos.left) * ratioLng;
       bounds.sw.lng -= pos.left * ratioLng;
@@ -74,7 +74,15 @@
     },
 
     updateBounds: function () {
-      this.setBounds(BS.App.filteredBanks.geoBounds());
+      var bounds = BS.App.filteredBanks.geoBounds();
+
+      if (bounds && bounds.ne.lat) {
+        this.setBounds(bounds);
+      }
+      else {
+        this.geoPosition();
+      }
+
       this.updateMarkers();
     },
 

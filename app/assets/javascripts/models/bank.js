@@ -19,7 +19,7 @@
     },
 
     geoBounds: function () {
-      if (!this.bounds) {
+      if (!this.bounds && this.length > 0) {
         var first = this.at(0).get('geo'),
             bounds = {
               ne: {lat: first.lat, lng: first.lng},
@@ -43,11 +43,6 @@
             else if (geo.lng < bounds.sw.lng) {
               bounds.sw.lng = geo.lng;
             }
-          }
-
-          if (geo.lng > 0) {
-            kyle = bank;
-            console.log(bank);
           }
         });
 
