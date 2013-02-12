@@ -28,11 +28,12 @@ a {
 
 nav {
   position: fixed;
-  top: 44px;
+  top: 34px;
   left: 0;
   padding: 10px 20px;
-  width: 100px;
+  width: 160px;
   div {
+    margin-top: 10px;
     font-weight: bold;
   }
   a {
@@ -42,7 +43,7 @@ nav {
 
 main {
   display: block;
-  padding: 54px 10px 0 140px;
+  padding: 54px 10px 0 200px;
 }
 
 panel {

@@ -4,6 +4,10 @@
     <% Admin::AdminController::MODELS.each do |model| %>
       <%= link_to model, [:admin, model] %>
     <% end %>
+
+    <div>Jobs</div>
+    <a class="geocode">Geocode Banks</a>
+    <a class="import-csv">Import CSV</a>
   </nav>
 
   <input type="search" class="search" placeholder="Filter" />

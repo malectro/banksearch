@@ -1,8 +1,10 @@
 class Bank
   include Mongoid::Document
+  include Mongoid::Spacial::Document
 
   field :name, type: String
   field :address, type: String
+  field :geo, type: Array, spacial: true
   field :zip, type: Integer
   field :phone, type: Integer
   field :ssh, as: :safe_stop_hub, type: Boolean
@@ -15,4 +17,6 @@ class Bank
   field :gid, as: :government_id, type: Boolean
   field :ssitn, type: Symbol
   field :notes, type: String
+
+  #spacial_index :geo
 end

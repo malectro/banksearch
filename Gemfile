@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'sqlite3'
 gem 'mongoid', '~> 3.0.0'
+gem 'mongoid_spacial'
 gem 'ejs'
 
 

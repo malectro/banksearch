@@ -16,6 +16,10 @@
       return this.filter(function (bank) {
         return bank.get('name').toLowerCase().match(query) || bank.get('address').toLowerCase().match(query);
       });
+    },
+
+    geoBounds: function () {
+      
     }
   });
 }());

@@ -26,7 +26,8 @@
       events: {
         'click button': 'create',
         'click': 'anyClick',
-        'keydown .search': 'filter'
+        'keydown .search': 'filter',
+        'click .geocode': 'geocode'
       },
 
       initialize: function () {
@@ -95,6 +96,52 @@
         else {
           this.addAll();
         }
+      },
+
+      geocode: function () {
+        function callback(result, status) {
+          if (status === 'OK') {
+            var bank = toSync.at(toSync.length - 1),
+                coords = result[0].geometry.location;
+
+            bank.set('geo', {lat: coords.lat(), lng: coords.lng()});
+            bank.save();
+          }
+
+          i++;
+          if (i < self.dataList.length) {
+            start();
+          }
+          else {
+            done();
+          }
+        }
+
+        function start() {
+          var bank = self.dataList.at(i);
+
+          if (bank && !bank.get('geo').lat) {
+            toSync.push(bank);
+            geocoder.geocode({
+              address: bank.get('address') + ' ' + bank.get('zip')
+            }, callback);
+          }
+          else {
+            i++;
+            _.defer(start);
+          }
+        }
+
+        function done() {
+          alert('Gelocation finished.');
+        }
+
+        var self = this,
+            toSync = new Mel.Collection.Bank,
+            geocoder = new google.maps.Geocoder,
+            i = 0;
+
+        start();
       }
     });
 
