@@ -13,6 +13,30 @@
 
     initialize: function () {
 
+    },
+
+    geocode: function (callback) {
+      if (typeof google === 'undefined') {
+        alert('You\'ll need internet access to geocode banks.');
+        return false;
+      }
+
+      var geocoder = new google.maps.Geocoder;
+
+      geocoder.geocode({
+        address: this.get('address') + ', ' + this.get('zip')
+      }, function (results, status) {
+        if (status === 'OK') {
+          this.set('geo', {
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng()
+          });
+          this.save();
+          callback();
+        }
+      });
+
+      return true;
     }
   });
 
@@ -77,6 +101,7 @@
 
     events: {
       'submit form': 'save',
+      'click .bank-geocode': 'geocode',
       'click': 'block'
     },
 
@@ -109,6 +134,21 @@
 
     block: function (e) {
       e.stopPropagation();
+    },
+
+    geocode: function () {
+      var $button = this.$('.bank-geocode'),
+          good;
+
+      good = this.model.geocode(function () {
+        $button.attr('disabled', false).text('Geocode');
+      });
+
+      if (good) {
+        $button.attr('disabled', true).text('Geocoding...');
+      }
+
+      return false;
     }
 
   });
