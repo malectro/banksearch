@@ -1,15 +1,14 @@
+require "csv"
+
 ssitn_map = {
   "0" => :none,
   "1" => :ss,
   "2" => :ss_or_itn
 }
 
-File.open(Rails.root.join('db', 'safestart.csv'), 'r') do |file|
-  #first line is the header
-  file.gets
-
-  while stuff = file.gets do
-    row = stuff.split(',')
+CSV.foreach(Rails.root.join('db', 'safestart.csv'), {
+    headers: :first_row
+  }) do |row|
     attrs = {
       name: row[0],
       address: row[1],
@@ -49,7 +48,8 @@ File.open(Rails.root.join('db', 'safestart.csv'), 'r') do |file|
 
     bank = Bank.new(attrs)
 
-    puts bank.errors unless bank.save
-  end
+    puts bank.attributes
+    #puts bank.errors unless bank.save
 end
+
 
