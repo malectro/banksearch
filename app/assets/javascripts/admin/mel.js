@@ -27,7 +27,8 @@
         'click button': 'create',
         'click': 'anyClick',
         'keydown .search': 'filter',
-        'click .geocode': 'geocode'
+        'click .geocode': 'geocode',
+        'click .import-csv': 'importCsv'
       },
 
       initialize: function () {
@@ -67,10 +68,7 @@
 
       editOne: function (ob) {
         var view = new this.dataEditView({model: ob});
-        view.render();
-        view.$el.hide().css({top: window.scrollY + this.$win.height()});
-        this.$el.append(view.el);
-        view.$el.show().animate({top: window.scrollY + 80}, 200);
+        this.popUp(view.render().$el);
       },
 
       anyClick: function (e) {
@@ -134,6 +132,95 @@
             i = 0;
 
         start();
+      },
+
+      importCsv: function () {
+        var uploader = new Mel.View.Uploader;
+        this.popUp(uploader.render().$el);
+      },
+
+      popUp: function ($el) {
+        $el.hide().css({top: window.scrollY + this.$win.height(), opacity: 0});
+        this.$el.append($el);
+        $el.show().animate({top: window.scrollY + 80, opacity: 1}, 200);
+      },
+
+      dropAway: function (view) {
+        view.$el.transition({
+          y: 600,
+          opacity: 0,
+          rotate: _.random(-30, 30) + 'deg'
+        }, 400, function () {
+          view.remove();
+        });
+      }
+    });
+
+    Mel.View.Uploader = Backbone.View.extend({
+      tagName: 'panel',
+
+      events: {
+        'submit form': 'upload'
+      },
+
+      initialize: function () {
+        var self = this;
+
+        _.defer(function () {
+          self.listenTo(Mel.App, 'anyClick', self.close);
+        });
+
+        this.uploading = false;
+      },
+
+      render: function () {
+        this.$el.html(Mel.tmpl('uploader'));
+        this.$form = this.$('form');
+
+        return this;
+      },
+
+      close: function () {
+        if (!this.uploading) {
+          Mel.App.dropAway(this);
+        }
+      },
+
+      iframeName: (function () {
+        var iframeCount = 0;
+
+        return function () {
+          return "uploader-frame" + (iframeCount++);
+        }
+      }()),
+
+      upload: function () {
+        var self = this,
+            $iframe,
+            name = this.iframeName();
+
+        this.uploading = true;
+        this.$('input[type=submit]').attr('disabled', 'disabled').value('Uploading...');
+
+        $iframe = $('<iframe />');
+        $iframe.hide().attr({
+          src: 'about:blank',
+          id: name,
+          name: name
+        }).appendTo(document.body);
+
+        this.$form.attr({
+          action: '/admin/banks/csv',
+          method: 'post',
+          enctype: 'multipart/form-data',
+          target: name
+        }).load(function () {
+          Mel.App.dataList.fetch();
+          self.uploading = false;
+          self.close();
+        });
+
+        return true;
       }
     });
 

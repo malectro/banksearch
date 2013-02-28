@@ -18,5 +18,9 @@ class Bank
   field :ssitn, type: Symbol
   field :notes, type: String
 
+  validates_uniqueness_of :address
+
+  index({address: 1}, {unique: true})
+
   #spacial_index :geo
 end

@@ -48,8 +48,7 @@ CSV.foreach(Rails.root.join('db', 'safestart.csv'), {
 
     bank = Bank.new(attrs)
 
-    puts bank.attributes
-    #puts bank.errors unless bank.save
+    puts bank.errors unless bank.save
 end
 
 
