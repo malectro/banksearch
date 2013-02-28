@@ -28,7 +28,8 @@
         'click': 'anyClick',
         'keydown .search': 'filter',
         'click .geocode': 'geocode',
-        'click .import-csv': 'importCsv'
+        'click .import-csv': 'importCsv',
+        'click .destroy-all': 'destroyAll'
       },
 
       initialize: function () {
@@ -59,6 +60,7 @@
       },
 
       addAll: function () {
+        this.$('data').html('');
         this.dataList.each(this.addOne, this);
       },
 
@@ -137,6 +139,15 @@
       importCsv: function () {
         var uploader = new Mel.View.Uploader;
         this.popUp(uploader.render().$el);
+      },
+
+      destroyAll: function () {
+        if (confirm("Are you sure you'd like to delete all the banks?")) {
+          var self = this;
+          $.ajax('/admin/banks/all', {method: 'delete', complete: function () {
+            self.dataList.fetch();
+          }});
+        }
       },
 
       popUp: function ($el) {
@@ -220,7 +231,7 @@
             Mel.App.dataList.fetch();
             self.uploading = false;
             self.close();
-            iframe.remove();
+            $iframe.remove();
           });
 
           this.$form.submit();

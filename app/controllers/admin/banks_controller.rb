@@ -100,5 +100,10 @@ class Admin::BanksController < Admin::AdminController
 
     render json: banks
   end
+
+  def all
+    Bank.all.destroy
+    render json: "ouch"
+  end
 end
 

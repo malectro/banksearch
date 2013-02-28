@@ -9,6 +9,7 @@ Banksearch::Application.routes.draw do
     resources :banks do
       collection do
         post 'csv'
+        delete 'all'
       end
     end
   end
