@@ -14,9 +14,11 @@ class Bank
   field :mb, as: :min_balance, type: Float
   field :od, as: :opening_deposit, type: Float
   field :of, as: :opening_fee, type: Float
+  field :ob, as: :online_bank, type: Boolean
   field :gid, as: :government_id, type: Boolean
   field :ssitn, type: Symbol
   field :notes, type: String
+  field :hours, type: String
 
   validates_uniqueness_of :address
 

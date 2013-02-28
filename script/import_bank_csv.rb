@@ -6,7 +6,9 @@ ssitn_map = {
   "2" => :ss_or_itn
 }
 
-CSV.foreach(Rails.root.join('db', 'safestart.csv'), {
+Bank.all.destroy
+
+CSV.foreach(Rails.root.join('db', 'safestart3.csv'), {
     headers: :first_row
   }) do |row|
     attrs = {
@@ -21,9 +23,11 @@ CSV.foreach(Rails.root.join('db', 'safestart.csv'), {
       mb: row[7],
       od: row[8],
       of: row[9],
-      gid: row[10],
-      ssitn: row[11],
-      notes: row[12]
+      ob: row[10],
+      gid: row[11],
+      ssitn: row[12],
+      notes: row[13],
+      hours: row[14]
     }
 
     # normalize phones
@@ -48,7 +52,8 @@ CSV.foreach(Rails.root.join('db', 'safestart.csv'), {
 
     bank = Bank.new(attrs)
 
+    puts bank.attributes
+
     puts bank.errors unless bank.save
 end
-
 

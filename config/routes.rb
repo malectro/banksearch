@@ -5,7 +5,12 @@ Banksearch::Application.routes.draw do
 
   namespace :admin do
     root to: 'admin#index'
-    resources :banks
+
+    resources :banks do
+      collection do
+        post 'csv'
+      end
+    end
   end
 
   # The priority is based upon order of creation:

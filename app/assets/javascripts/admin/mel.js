@@ -160,7 +160,8 @@
       tagName: 'panel',
 
       events: {
-        'submit form': 'upload'
+        'submit form': 'upload',
+        'click': 'block'
       },
 
       initialize: function () {
@@ -194,33 +195,45 @@
         }
       }()),
 
-      upload: function () {
+      upload: function (e) {
         var self = this,
+            $form,
             $iframe,
             name = this.iframeName();
 
-        this.uploading = true;
-        this.$('input[type=submit]').attr('disabled', 'disabled').value('Uploading...');
+        if (!this.$form.attr('target')) {
+          e.preventDefault();
 
-        $iframe = $('<iframe />');
-        $iframe.hide().attr({
-          src: 'about:blank',
-          id: name,
-          name: name
-        }).appendTo(document.body);
+          this.$form.attr({
+            action: '/admin/banks/csv',
+            method: 'post',
+            enctype: 'multipart/form-data',
+            target: name
+          });
 
-        this.$form.attr({
-          action: '/admin/banks/csv',
-          method: 'post',
-          enctype: 'multipart/form-data',
-          target: name
-        }).load(function () {
-          Mel.App.dataList.fetch();
-          self.uploading = false;
-          self.close();
-        });
+          $iframe = $('<iframe />');
+          $iframe.hide().attr({
+            src: 'about:blank',
+            id: name,
+            name: name
+          }).appendTo(document.body).load(function () {
+            Mel.App.dataList.fetch();
+            self.uploading = false;
+            self.close();
+            iframe.remove();
+          });
 
-        return true;
+          this.$form.submit();
+        }
+        else {
+          this.uploading = true;
+          this.$('input[type=submit]')
+            .attr('disabled', 'disabled').val('Uploading...');
+        }
+      },
+
+      block: function (e) {
+        e.stopPropagation();
       }
     });
 
