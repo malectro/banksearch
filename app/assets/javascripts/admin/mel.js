@@ -231,7 +231,7 @@
             Mel.App.dataList.fetch();
             self.uploading = false;
             self.close();
-            $iframe.remove();
+            //$iframe.remove();
           });
 
           this.$form.submit();
