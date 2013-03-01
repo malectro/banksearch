@@ -1,6 +1,32 @@
 <main>
   <form class="search">
-    <input type="text" class="query" placeholder="Search for a bank..." />
+    <div class="search-bar">
+      <input type="text" name="query" class="query" placeholder="Search for a bank..." />
+      <input type="text" name="address" class="address" placeholder="Near the address..." />
+    </div>
+
+    <div class="search-panel">
+      <label>
+        <span>Minimum Balance</span>
+        <input type="number" name="mb" placeholder="0.00" />
+      </label>
+
+      <label>
+        <span>No Government ID Required?</span>
+        <input type="checkbox" name="gid" />
+      </label>
+
+      <label>
+        <span>No Opening Fee?</span>
+        <input type="checkbox" name="of" />
+      </label>
+
+      <label>
+        <span>No Fees At All?</span>
+        <input type="checkbox" name="nf" />
+      </label>
+    </div>
+
   </form>
 
   <div class="bank-list">

@@ -20,10 +20,37 @@
       return bank.get('name');
     },
 
-    search: function (query) {
-      query = query.toLowerCase();
+    search: function (params) {
+      console.log(params);
+
+      _.defaults(params, {
+        query: '',
+        mb: 1000,
+        gid: false,
+        of: false,
+        nf: false
+      });
+
+      console.log(params);
+
+      query = params.query.toLowerCase();
       return new BS.List.Bank(this.filter(function (bank) {
-        return bank.get('name').toLowerCase().match(query) || bank.get('address').toLowerCase().match(query);
+        return (bank.get('name').toLowerCase().match(query)
+          || bank.get('address').toLowerCase().match(query))
+
+          // minimum balance is less than balance given
+          && bank.get('mb') <= params.mb
+
+          // no government id is required if box is checked
+          && (!params.gid || !bank.get('gid'))
+
+          && (!params.of || bank.get('of') === 0)
+
+          && (!params.nf || (
+            bank.get('of') === 0
+            && bank.get('yf') === 0
+            && bank.get('mf') === 0
+          ));
       }));
     },
 

@@ -17,6 +17,7 @@
 
       events: {
         'keydown .search .query': 'filter',
+        'change .search input': 'filter',
         'click .bank-row': 'clickBank'
       },
 
@@ -37,17 +38,19 @@
 
       filter: function () {
         var html = '',
-            banks = [];
+            banks = [],
+            params = this.$search.serializeObject();
 
-        this.query = this.$search.find('.query').val();
+        this.query = params.query;
 
-        if (this.query) {
-          this.filteredBanks = this.banks.search(this.query);
+        if (!params.mb) {
+          params.mb = null;
         }
         else {
-          this.filteredBanks = this.banks.clone();
+          params.mb = parseFloat(params.mb);
         }
 
+        this.filteredBanks = this.banks.search(params);
         banks = this.filteredBanks.slice(0, 30);
 
         _.each(banks, function (bank) {
