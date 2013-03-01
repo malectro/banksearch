@@ -1,3 +1,7 @@
+
+$mapFrameWidth: 495px;
+$mapFrameHeight: 600px;
+
 h1 {
   position: relative;
   font-size: 48px;
@@ -44,11 +48,23 @@ main {
 }
 .g-map-frame {
   position: fixed;
-  top: 115px;
+  top: 112px;
   left: 50%;
-  width: 500px;
-  height: 600px;
+  margin-left: 5px;
+  width: $mapFrameWidth;
+  height: $mapFrameHeight;
   z-index: 1;
+}
+.g-map-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $mapFrameWidth;
+  height: $mapFrameHeight;
+  border: 0px solid #000;
+  opacity: 0.3;
+  z-index: 3;
+  display: none;
 }
 
 .bank-row {

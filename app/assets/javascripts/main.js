@@ -11,6 +11,7 @@
     var BankSearch = Backbone.View.extend({
       el: $('body'),
 
+      $window: $(window),
       $search: $('.search'),
       query: '',
 
@@ -24,6 +25,8 @@
         this.map = new BS.View.Map({el: $('.g-map'), app: this});
 
         this.listenTo(this.banks, 'reset', this.filter);
+
+        this.$window.resize(_.bind(_.throttle(this.resize, 100), this));
 
         this.banks.fetch();
       },
@@ -59,9 +62,11 @@
         var id = $(e.currentTarget).data('id'),
             bank = this.filteredBanks.get(id);
 
-        console.log(bank);
-
         this.trigger('clickBank', bank);
+      },
+
+      resize: function (e) {
+        this.trigger('resize', e);
       }
     });
 

@@ -33,8 +33,9 @@
             lng: results[0].geometry.location.lng()
           });
           self.save();
-          callback();
         }
+
+        callback();
       });
 
       return true;
