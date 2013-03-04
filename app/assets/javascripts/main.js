@@ -59,19 +59,21 @@
         if (address) {
           this.map.geocode(this.address, function (info) {
             if (info) {
-              console.log(info);
               self.address = info.address;
+              self.$('.search .address').val(info.address);
               self.geopoint = info;
             }
             else {
               self.geopoint = null;
             }
 
+            self.banks.sort();
             self.filter();
           });
         }
         else {
           this.geopoint = null;
+          this.banks.sort();
           this.filter();
         }
       },
@@ -89,6 +91,8 @@
         else {
           params.mb = parseFloat(params.mb);
         }
+
+        params.geopoint = this.geopoint;
 
         this.filteredBanks = this.banks.search(params);
         banks = this.filteredBanks.slice(0, 30);

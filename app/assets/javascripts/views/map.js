@@ -62,18 +62,11 @@
       var self = this,
           geocoder = new Gmaps.Geocoder;
 
-      console.log({
-        address: address,
-        bounds: this.gbounds,
-        location: this.gmap.getCenter()
-      });
-
       geocoder.geocode({
         address: address,
         bounds: this.gbounds,
         location: this.gmap.getCenter()
       }, function (results, status) {
-        console.log(results);
         if (status === 'OK') {
           callback({
             address: results[0].formatted_address,

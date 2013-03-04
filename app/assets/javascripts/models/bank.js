@@ -9,6 +9,20 @@
       attrs.phone = '(' + attrs.phone.slice(0, 3) + ') ' + attrs.phone.slice(3, 6) + '-' + attrs.phone.slice(6, 10);
 
       return attrs;
+    },
+
+    distanceTo: function (latLng) {
+      var geo = this.get('geo'),
+          response;
+
+      if (geo) {
+        response = BS.App.map.distance(geo, latLng);
+      }
+      else {
+        response = Infinity;
+      }
+
+      return response;
     }
   });
 
@@ -17,7 +31,12 @@
     model: BS.Model.Bank,
 
     comparator: function (bank) {
-      return bank.get('name');
+      if (BS.App.geopoint) {
+        return bank.distanceTo(BS.App.geopoint);
+      }
+      else {
+        return bank.get('name');
+      }
     },
 
     search: function (params) {
