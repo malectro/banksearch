@@ -21,8 +21,6 @@
     },
 
     search: function (params) {
-      console.log(params);
-
       _.defaults(params, {
         query: '',
         mb: 1000,
@@ -30,8 +28,6 @@
         of: false,
         nf: false
       });
-
-      console.log(params);
 
       query = params.query.toLowerCase();
       return new BS.List.Bank(this.filter(function (bank) {

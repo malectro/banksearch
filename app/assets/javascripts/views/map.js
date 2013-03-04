@@ -58,6 +58,35 @@
       }
     },
 
+    geocode: function (address, callback) {
+      var self = this,
+          geocoder = new Gmaps.Geocoder;
+
+      console.log({
+        address: address,
+        bounds: this.gbounds,
+        location: this.gmap.getCenter()
+      });
+
+      geocoder.geocode({
+        address: address,
+        bounds: this.gbounds,
+        location: this.gmap.getCenter()
+      }, function (results, status) {
+        console.log(results);
+        if (status === 'OK') {
+          callback({
+            address: results[0].formatted_address,
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng()
+          });
+        }
+        else {
+          callback(null);
+        }
+      });
+    },
+
     setBounds: function (bounds) {
       if (!Gmaps) {
         return;
@@ -74,6 +103,10 @@
       this.bounds = {
         ne: _.clone(bounds.ne), sw: _.clone(bounds.sw)
       };
+      this.gbounds = new Gmaps.LatLngBounds(
+        new Gmaps.LatLng(bounds.sw.lat, bounds.sw.lng),
+        new Gmaps.LatLng(bounds.ne.lat, bounds.ne.lng)
+      );
 
       this.center = {
         lat: bounds.sw.lat + (bounds.ne.lat - bounds.sw.lat) / 2,
@@ -174,6 +207,12 @@
       bank.mapInfo.info.open(this.gmap, bank.mapInfo.marker);
       this.currentInfo = bank.mapInfo.info;
       this.setCenter(bank.mapInfo.marker.position);
+    },
+
+    distance: function (point1, point2) {
+      return Gmaps.geometry.spherical.computeDistanceBetween(
+        new Gmaps.LatLng(point1.lat, point1.lng), new Gmaps.LatLng(point2.lat, point2.lng)
+      );
     }
   });
 

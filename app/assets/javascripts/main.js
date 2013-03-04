@@ -17,7 +17,10 @@
 
       events: {
         'keydown .search .query': 'filter',
-        'change .search input': 'filter',
+        'change .search .query': 'filter',
+        'change .search-panel input': 'filter',
+        'change .search .address': 'changeAddress',
+        'keydown .search .address': 'enterAddress',
         'click .bank-row': 'clickBank'
       },
 
@@ -34,6 +37,43 @@
 
       clear: function () {
 
+      },
+
+      clearAddress: function () {
+
+      },
+
+      enterAddress: function (e) {
+        if (e.which === 13) {
+          this.changeAddress();
+        }
+      },
+
+      changeAddress: function () {
+        var self = this,
+            params = this.$search.serializeObject(),
+            address = params.address;
+
+        this.address = address;
+
+        if (address) {
+          this.map.geocode(this.address, function (info) {
+            if (info) {
+              console.log(info);
+              self.address = info.address;
+              self.geopoint = info;
+            }
+            else {
+              self.geopoint = null;
+            }
+
+            self.filter();
+          });
+        }
+        else {
+          this.geopoint = null;
+          this.filter();
+        }
       },
 
       filter: function () {
