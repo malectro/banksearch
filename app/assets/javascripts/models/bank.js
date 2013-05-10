@@ -59,8 +59,10 @@
           // no government id is required if box is checked
           && (!params.gid || !bank.get('gid'))
 
+          // no opening phi
           && (!params.of || bank.get('of') === 0)
 
+          // no fees at all
           && (!params.nf || (
             bank.get('of') === 0
             && bank.get('yf') === 0
