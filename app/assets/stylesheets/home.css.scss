@@ -113,6 +113,9 @@ main {
   background: white;
   z-index: 2;
 }
+.hide {
+  display: none;
+}
 .bank-info {
   @include floating-box-shadow;
   position: relative;
