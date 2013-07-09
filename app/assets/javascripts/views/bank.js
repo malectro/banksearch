@@ -14,6 +14,12 @@
 
     show: function () {
       this.$el.slideDown(200);
+    },
+
+    hideAndRemove: function () {
+      this.$el.slideUp(200, function() {
+        this.remove();
+      });
     }
   });
 

@@ -116,9 +116,15 @@
       },
 
       expandBank: function (bank) {
-        var bankView = (new BS.View.Bank({bank: bank})).render();
-        $('#bank-row-' + bank.id).after(bankView.$el);
-        bankView.show();
+        if (this.bankView) {
+          this.bankView.hideAndRemove();
+        }
+
+        this.bankView = (new BS.View.Bank({bank: bank})).render();
+
+        $('#bank-row-' + bank.id).after(this.bankView.$el);
+
+        this.bankView.show();
       },
 
       resize: function (e) {
