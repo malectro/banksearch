@@ -47,8 +47,6 @@ class Admin::BanksController < Admin::AdminController
 
     banks = []
 
-    puts params
-
     CSV.foreach(params[:csv].path, {
         headers: :first_row
       }) do |row|

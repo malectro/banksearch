@@ -107,8 +107,16 @@ main {
 }
 .bank-row {
   @include floating-box-shadow;
+  position: relative;
   margin-top: 5px;
   padding: 5px 10px;
   background: white;
+  z-index: 2;
 }
-
+.bank-info {
+  @include floating-box-shadow;
+  position: relative;
+  padding: 5px 10px;
+  background: white;
+  z-index: 1;
+}

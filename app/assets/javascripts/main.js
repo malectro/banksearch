@@ -106,10 +106,19 @@
       },
 
       clickBank: function (e) {
-        var id = $(e.currentTarget).data('id'),
+        var $target = $(e.currentTarget),
+            id = $target.data('id'),
             bank = this.filteredBanks.get(id);
 
+        this.expandBank(bank);
+
         this.trigger('clickBank', bank);
+      },
+
+      expandBank: function (bank) {
+        var bankView = (new BS.View.Bank({bank: bank})).render();
+        $('#bank-row-' + bank.id).after(bankView.$el);
+        bankView.show();
       },
 
       resize: function (e) {
