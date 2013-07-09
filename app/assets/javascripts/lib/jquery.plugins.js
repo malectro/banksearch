@@ -6,5 +6,12 @@
     });
     return ob;
   };
+
+  $.fn.scrollTo = function ($el) {
+    this.each(function () {
+      var offset = $el.offset();
+      this.scrollTo(offset.left, offset.top - 10);
+    });
+  };
 }(jQuery))
 

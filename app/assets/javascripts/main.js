@@ -29,6 +29,7 @@
         this.map = new BS.View.Map({el: $('.g-map'), app: this});
 
         this.listenTo(this.banks, 'reset', this.filter);
+        this.listenTo(this.map, 'clickMarker', this.expandBank);
 
         this.$window.resize(_.bind(_.throttle(this.resize, 100), this));
 
@@ -120,11 +121,14 @@
           this.bankView.hideAndRemove();
         }
 
+        var $bankRow = $('#bank-row-' + bank.id);
+
         this.bankView = (new BS.View.Bank({bank: bank})).render();
 
-        $('#bank-row-' + bank.id).after(this.bankView.$el);
+        $bankRow.after(this.bankView.$el);
 
         this.bankView.show();
+        $(window).scrollTo($bankRow);
       },
 
       resize: function (e) {

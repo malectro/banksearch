@@ -181,6 +181,7 @@
 
         Gmaps.event.addListener(marker, 'click', function () {
           self.showInfo(bank);
+          self.trigger('clickMarker', bank);
         });
         self.markers.push(marker);
 

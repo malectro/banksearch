@@ -13,13 +13,13 @@
     },
 
     show: function () {
-      this.$el.slideDown(200);
+      //this.$el.slideDown(200);
+      this.$el.show();
     },
 
     hideAndRemove: function () {
-      this.$el.slideUp(200, function() {
-        this.remove();
-      });
+      this.$el.hide();
+      this.remove();
     }
   });
 
