@@ -57,7 +57,7 @@
           && bank.get('mb') <= params.mb
 
           // no government id is required if box is checked
-          && (!params.gid || !bank.get('gid'))
+          && (params.gid || !bank.get('gid'))
 
           // no opening phi
           && (!params.of || bank.get('of') === 0)
