@@ -133,7 +133,7 @@
         $bankRow.after(this.bankView.$el);
 
         this.bankView.show();
-        $(window).scrollTo($bankRow);
+        //$(window).scrollTo($bankRow);
       },
 
       resize: function (e) {
