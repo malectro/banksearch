@@ -51,6 +51,10 @@
 
       var self = this;
 
+      // for now we will only focus on NY
+      self.gmap.setCenter(new Gmaps.LatLng(this.geoStart.lat, this.geoStart.lng));
+      return;
+
       if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
         navigator.geolocation.getCurrentPosition(function (pos) {
           self.gmap.setCenter(new Gmaps.LatLng(pos.coords.latitude, pos.coords.longitude));
