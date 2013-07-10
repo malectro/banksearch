@@ -96,7 +96,7 @@
         params.geopoint = this.geopoint;
 
         this.filteredBanks = this.banks.search(params);
-        banks = this.filteredBanks.slice(0, 50);
+        banks = this.filteredBanks.slice(0, 10);
 
         _.each(banks, function (bank) {
           html += BS.tmpl('bank_row', bank.attributes);
@@ -126,11 +126,9 @@
           this.bankView.hideAndRemove();
         }
 
-        var $bankRow = $('#bank-row-' + bank.id);
-
         this.bankView = (new BS.View.Bank({bank: bank})).render();
 
-        $bankRow.after(this.bankView.$el);
+        this.$('.bank-list').append(this.bankView.$el);
 
         this.bankView.show();
         //$(window).scrollTo($bankRow);
