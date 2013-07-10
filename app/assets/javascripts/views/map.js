@@ -191,6 +191,10 @@
           zIndex: 20
         };
       });
+
+      if (BS.App.filteredBanks.length) {
+        self.showInfo(BS.App.filteredBanks.first());
+      }
     },
 
     showInfo: function (bank) {

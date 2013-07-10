@@ -96,13 +96,18 @@
         params.geopoint = this.geopoint;
 
         this.filteredBanks = this.banks.search(params);
-        banks = this.filteredBanks.slice(0, 30);
+        banks = this.filteredBanks.slice(0, 50);
 
         _.each(banks, function (bank) {
           html += BS.tmpl('bank_row', bank.attributes);
         });
 
         this.$('.bank-list').html(html);
+
+        if (banks.length) {
+          this.expandBank(banks[0]);
+        }
+
         this.trigger('filtered', this.filteredBanks);
       },
 
