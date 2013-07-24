@@ -33,11 +33,11 @@ main {
   position: fixed;
   top: 20px;
   right: 20px;
-  width: 496px;
+  width: 470px;
 
   .address {
     @include floating-box-shadow;
-    width: 496px - 10px - 87px - 2px;
+    width: 470px - 10px - 87px - 2px;
     border: none;
     padding: 10px 87px 10px 10px;
     height: 16px - 2px;
