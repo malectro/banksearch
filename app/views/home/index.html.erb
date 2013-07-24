@@ -11,38 +11,53 @@
     <div class="search-panel">
       <label>
         <span>How low would your bank account go every month?</span>
-        <input type="number" name="mb" placeholder="0.00" />
+        <span class="currency">$<input type="number" name="mb" placeholder="0.00" /></span>
       </label>
 
       <label>
         <span>How much could you put in your account today?</span>
-        <input type="number" name="od_of" placeholder="0.00" />
-        <input type="checkbox" name="of" />
+        <span class="currency">$<input type="number" name="od_of" placeholder="0.00" /></span>
+        <input style="display: none;" type="checkbox" name="of" />
       </label>
 
       <label>
         <span>Do you have a US-issued government ID?</span>
-        <input type="checkbox" name="gid" />
+        <select name="gid" class="yesno">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
       </label>
 
       <label>
         <span>Do you have a Social Security Number?</span>
-        <input type="checkbox" name="ssn" />
+        <select name="ssn" class="yesno">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
       </label>
 
       <label>
         <span>Do you have an ITIN?</span>
-        <input type="checkbox" name="itin" />
+        <select name="itin" class="yesno">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
       </label>
 
       <label>
         <span>Usted preferre un banko que pa Español?</span>
-        <input type="checkbox" name="spanish" />
+        <select name="spanish" class="yesno">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
       </label>
 
       <label>
         <span>Are you looking for a SafeStart account?</span>
-        <input type="checkbox" name="safe_stop" />
+        <select name="safe_stop" class="yesno">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
       </label>
     </div>
 

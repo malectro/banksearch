@@ -53,3 +53,8 @@ button {
   border: none;
   outline: none;
 }
+input {
+  &:focus {
+    outline: none;
+  }
+}

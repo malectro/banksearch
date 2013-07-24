@@ -19,6 +19,7 @@
         'keydown .search .query': 'filter',
         'change .search .query': 'filter',
         'change .search-panel input': 'filter',
+        'change .search-panel select': 'filter',
         'change .search .address': 'changeAddress',
         'keydown .search .address': 'enterAddress',
         'click .search-button': 'changeAddress',
