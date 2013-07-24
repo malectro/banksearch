@@ -34,6 +34,17 @@
         });
 
         this.geoPosition();
+
+        this.iconShape = {
+          coords: [25, 25, 25],
+          shape: 'circle'
+        };
+        this.icon = {
+          anchor: new Gmaps.Point(25, 25),
+          scaledSize: new Gmaps.Size(25, 25),
+          size: new Gmaps.Size(25, 25),
+          url: '/assets/bank.png'
+        };
       }
 
       this.listenTo(this.options.app, 'filtered', _.debounce(this.updateBounds, 1000));
@@ -180,7 +191,9 @@
             marker = new Gmaps.Marker({
               map: self.gmap,
               position: new Gmaps.LatLng(geo.lat, geo.lng),
-              title: bank.get('name')
+              title: bank.get('name'),
+              flat: true,
+              icon: self.icon
             }),
             info = new Gmaps.InfoWindow({
               content: BS.tmpl('bank_bubble', bank.fattributes())
