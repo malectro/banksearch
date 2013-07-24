@@ -21,6 +21,7 @@
         'change .search-panel input': 'filter',
         'change .search .address': 'changeAddress',
         'keydown .search .address': 'enterAddress',
+        'click .search-button': 'changeAddress',
         'click .bank-row': 'clickBank'
       },
 
@@ -46,11 +47,11 @@
 
       enterAddress: function (e) {
         if (e.which === 13) {
-          this.changeAddress();
+          this.changeAddress(e);
         }
       },
 
-      changeAddress: function () {
+      changeAddress: function (e) {
         var self = this,
             params = this.$search.serializeObject(),
             address = params.address;
@@ -77,6 +78,8 @@
           this.banks.sort();
           this.filter();
         }
+
+        e.preventDefault();
       },
 
       filter: function () {
