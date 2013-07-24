@@ -8,7 +8,7 @@
 
     <button class="search-panel-open">Or tell us what you're looking for.</button>
 
-    <div class="search-panel">
+    <div style="display: none;" class="search-panel">
       <label>
         <span>How low would your bank account go every month?</span>
         <span class="currency">$<input type="number" name="mb" placeholder="0.00" /></span>
@@ -59,6 +59,10 @@
           <option value="0">No</option>
         </select>
       </label>
+
+      <div class="search-panel-hide">
+        <a>hide questions</a>
+      </div>
     </div>
 
   </form>

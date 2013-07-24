@@ -77,10 +77,15 @@ main {
     @include floating-box-shadow;
     @include option-gradient;
     @include text-impress-small;
-    display: none;
     padding: 5px 10px;
     font-size: 14px;
     color: white;
+    cursor: pointer;
+  }
+
+  .search-panel-hide {
+    text-align: right;
+    color: $soft-color;
   }
 
   .search-panel {
@@ -91,7 +96,7 @@ main {
     font-size: 14px;
 
     label {
-      float: left;
+      display: block;
       margin-right: 30px;
       margin-bottom: 10px;
       color: $nice-color;

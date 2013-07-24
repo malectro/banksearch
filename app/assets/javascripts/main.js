@@ -23,7 +23,9 @@
         'change .search .address': 'changeAddress',
         'keydown .search .address': 'enterAddress',
         'click .search-button': 'changeAddress',
-        'click .bank-row': 'clickBank'
+        'click .bank-row': 'clickBank',
+        'click .search-panel-open': 'showQs',
+        'click .search-panel-hide': 'hideQs'
       },
 
       initialize: function () {
@@ -36,6 +38,17 @@
         this.$window.resize(_.bind(_.throttle(this.resize, 100), this));
 
         this.banks.fetch();
+      },
+
+      showQs: function (e) {
+        $('.search-panel-open').hide();
+        $('.search-panel').show();
+        e.preventDefault();
+      },
+      hideQs: function (e) {
+        $('.search-panel').hide();
+        $('.search-panel-open').show();
+        e.preventDefault();
       },
 
       clear: function () {
