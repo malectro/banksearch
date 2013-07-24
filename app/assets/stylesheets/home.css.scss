@@ -70,19 +70,6 @@ main {
     }
   }
 
-  .query {
-    float: left;
-    width: 480px;
-    padding: 5px 10px;
-    font-size: 18px;
-    border: none;
-    box-shadow: 0 0 10px #000;
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 15px #009;
-    }
-  }
-
   .search-panel {
     @extend .clearfix;
     @include floating-box-shadow;
