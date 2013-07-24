@@ -34,10 +34,19 @@ main {
 }
 
 .search {
-  width: 1000px;
-  .search-bar {
-    @extend .clearfix;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 496px;
+
+  .address {
+    @include floating-box-shadow;
+    width: 496px - 20px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
   }
+
   .query {
     float: left;
     width: 480px;
@@ -49,11 +58,6 @@ main {
       outline: none;
       box-shadow: 0 0 15px #009;
     }
-  }
-  .address {
-    @extend .query;
-    width: 470px;
-    margin-left: 10px;
   }
 
   .search-panel {
