@@ -2,9 +2,22 @@
   <span><%= name %></span> |
   <span><%= address %></span>
 </div>
+
 <div class="bank-info" data-id="<%= _id %>">
-  <div class="bank-attr"><%= phone %></div>
-  <div class="bank-attr">Hours: <%= hours %></div>
-  <div class="bank-attr">Minimum Balance: <%= mb %></div>
-  <div class="bank-attr"><%= notes %></div>
+  <% if (phone) { %>
+    <div class="bank-attr-name">Phone</div>
+    <div class="bank-attr"><%= phone %></div>
+  <% } %>
+
+  <% if (hours) { %>
+    <div class="bank-attr-name">Hours</div>
+    <div class="bank-attr"><%= hours %></div>
+  <% } %>
+
+  <% if (notes) { %>
+    <div class="bank-attr-name">Info</div>
+    <div class="bank-attr"><%= notes %></div>
+  <% } %>
+
+  <a class="bank-more">more info</a>
 </div>

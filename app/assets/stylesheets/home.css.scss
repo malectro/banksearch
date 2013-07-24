@@ -26,8 +26,8 @@ h1 {
 main {
   position: absolute;
   display: block;
-  left: 50%;
-  margin-left: -500px;
+  left: 20px;
+  top: 80px;
   width: 500px;
   font-size: 14px;
   z-index: 10;
@@ -125,14 +125,18 @@ main {
 }
 
 .bank-list {
-  margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 20px;
 }
 .bank-row {
   @include floating-box-shadow;
   position: relative;
   margin-top: 5px;
   padding: 5px 10px;
-  background: white;
+  background: $ok-color;
+  font-size: 16px;
+  font-weight: normal;
+  color: white;
   z-index: 2;
 }
 .hide {
@@ -141,7 +145,21 @@ main {
 .bank-info {
   @include floating-box-shadow;
   position: relative;
-  padding: 5px 10px;
+  padding: 10px 10px 0;
   background: white;
   z-index: 1;
 }
+  .bank-attr-name {
+    font-size: 16px;
+    color: $nice-color;
+  }
+  .bank-attr {
+    margin-bottom: 10px;
+  }
+  .bank-more {
+    display: block;
+    height: 14px + 10px;
+    text-align: right;
+    color: $soft-color;
+    cursor: pointer;
+  }
