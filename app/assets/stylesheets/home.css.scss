@@ -41,10 +41,33 @@ main {
 
   .address {
     @include floating-box-shadow;
-    width: 496px - 20px;
+    width: 496px - 10px - 87px;
     border: none;
-    padding: 10px;
+    padding: 10px 87px 10px 10px;
+    height: 16px;
     font-size: 16px;
+    background: white image-url('house@2x.png') right 60px center no-repeat;
+    background-size: 24px 22px;
+  }
+
+  .search-button {
+    @include ok-gradient;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 36px;
+    background-color: $ok-color;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 22px;
+      height: 23px;
+      margin: 1px 0 0 8px;
+      background: image-url('search@2x.png') no-repeat center;
+      background-size: 100%;
+    }
   }
 
   .query {
