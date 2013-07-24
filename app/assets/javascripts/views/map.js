@@ -27,7 +27,10 @@
         this.gmap = new Gmaps.Map(this.$('div')[0], {
           center: new Gmaps.LatLng(this.geoStart.lat, this.geoStart.lng),
           zoom: 11,
-          mapTypeId: Gmaps.MapTypeId.ROADMAP
+          mapTypeId: Gmaps.MapTypeId.ROADMAP,
+          mapTypeControl: false,
+          scrollwheel: false,
+          overviewMapControl: false
         });
 
         this.geoPosition();
