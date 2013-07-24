@@ -3,16 +3,24 @@ $mapFrameWidth: 495px;
 $mapFrameHeight: 600px;
 
 @mixin floating-box-shadow {
-  box-shadow: 0 0 5px #000;
+  box-shadow: 0 1px 1px #000;
 }
 
 h1 {
-  position: relative;
+  @include floating-box-shadow;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 256px;
+  height: 60px;
   font-size: 48px;
-  width: 1000px;
-  margin: 0 auto;
-  z-index: 10;
-  text-shadow: 0 0 10px #fff;
+  font-weight: 300;
+  line-height: 60px;
+  text-align: center;
+  background: #6FC113;
+  color: white;
+  text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.5);
+  z-index: 11;
 }
 
 main {
