@@ -128,6 +128,8 @@
         }
 
         this.trigger('filtered', this.filteredBanks);
+
+        this.$window.scrollTop(0);
       },
 
       clickBank: function (e) {
@@ -154,7 +156,7 @@
       },
 
       showBank: function (bank) {
-        var top = this.$('#bank-row-' + bank.id).offset().top;
+        var top = this.$('#bank-row-' + bank.id).addClass('selected').offset().top;
         this.$window.scrollTop(top - 85);
       },
 
