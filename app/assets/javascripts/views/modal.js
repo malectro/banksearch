@@ -3,7 +3,7 @@
     tagName: 'div',
 
     events: {
-      'click .bg': 'hide'
+      'click button': 'chooseLanguage'
     },
 
     initialize: function () {
@@ -24,6 +24,11 @@
       this.$el.fadeOut(200, function () {
         self.destroy();
       });
+    },
+
+    chooseLanguage: function (e) {
+      // we should switch the template copy here, but we haven't translated the site yet
+      this.hide();
     }
   });
 }());
