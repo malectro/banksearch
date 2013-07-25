@@ -45,6 +45,12 @@
           size: new Gmaps.Size(25, 25),
           url: '/assets/bank.png'
         };
+        this.iconSelected = {
+          anchor: new Gmaps.Point(35, 35),
+          scaledSize: new Gmaps.Size(35, 35),
+          size: new Gmaps.Size(35, 35),
+          url: '/assets/bank-selected.png'
+        };
       }
 
       this.listenTo(this.options.app, 'filtered', _.debounce(this.updateBounds, 1000));
@@ -193,7 +199,8 @@
               position: new Gmaps.LatLng(geo.lat, geo.lng),
               title: bank.get('name'),
               flat: true,
-              icon: self.icon
+              icon: self.icon,
+              zIndex: 1
             }),
             info = new Gmaps.InfoWindow({
               content: BS.tmpl('bank_bubble', bank.fattributes())
@@ -225,6 +232,15 @@
       bank.mapInfo.info.open(this.gmap, bank.mapInfo.marker);
       this.currentInfo = bank.mapInfo.info;
       this.setCenter(bank.mapInfo.marker.position);
+
+      if (this.currentMarker) {
+        this.currentMarker.setIcon(this.icon);
+        this.currentMarker.setZIndex(1);
+      }
+
+      bank.mapInfo.marker.setIcon(this.iconSelected);
+      this.currentMarker = bank.mapInfo.marker;
+      this.currentMarker.setZIndex(2);
     },
 
     distance: function (point1, point2) {
