@@ -39,6 +39,9 @@
         this.banks.fetch();
 
         $(window).scroll(_.debounce(_.bind(this.scrolled, this), 500));
+
+        this.introModal = new BS.View.Modal();
+        this.introModal.render();
       },
 
       showQs: function (e) {

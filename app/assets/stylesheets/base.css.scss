@@ -61,3 +61,80 @@ input {
 a {
   cursor: pointer;
 }
+
+
+/* widgets */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 20;
+
+  .bg {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    background-image: radial-gradient(#222, #000);
+    opacity: 0.5;
+  }
+
+  .modal-content {
+    @include floating-box-shadow;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-left: -200px;
+    width: 400px;
+    z-index: 2;
+    background: white;
+    font-size: 14px;
+  }
+
+  .modal-title {
+    @include text-impress-small;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    background: $nice-color;
+    color: white;
+  }
+
+  .modal-text {
+    padding: 10px 10px 0;
+    text-align: center;
+  }
+
+  .modal-choices {
+    margin: 10px 0 10px;
+    text-align: center;
+
+    button {
+      @include text-impress-small;
+      margin: 0 10px;
+      min-width: 100px;
+      padding: 5px 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      
+      &.choice-ok {
+        @include ok-gradient;
+        background-color: $ok-color;
+      }
+      &.choice-other {
+        @include option-gradient;
+        background-color: $option-color;
+      }
+
+      &:hover {
+        @include floating-box-shadow;
+      }
+      &:active {
+        background-image: none;
+      }
+    }
+  }
+}
+
