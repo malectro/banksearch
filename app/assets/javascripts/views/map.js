@@ -28,9 +28,11 @@
           center: new Gmaps.LatLng(this.geoStart.lat, this.geoStart.lng),
           zoom: 11,
           mapTypeId: Gmaps.MapTypeId.ROADMAP,
-          mapTypeControl: false,
           scrollwheel: false,
-          overviewMapControl: false
+          mapTypeControl: false,
+          panControlOptions: {position: Gmaps.ControlPosition.RIGHT_CENTER},
+          streetViewControlOptions: {position: Gmaps.ControlPosition.RIGHT_CENTER},
+          zoomControlOptions: {position: Gmaps.ControlPosition.RIGHT_CENTER}
         });
 
         this.geoPosition();
