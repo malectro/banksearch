@@ -196,11 +196,15 @@ main {
   position: relative;
   margin-top: 5px;
   padding: 5px 10px;
-  background: $ok-color;
+  background: whitesmoke;
+  color: $soft-color;
   font-size: 16px;
   font-weight: normal;
-  color: white;
   z-index: 2;
+  &.selected {
+    background: $ok-color;
+    color: white;
+  }
 }
 .hide {
   display: none;
@@ -209,6 +213,7 @@ main {
   @include floating-box-shadow;
   position: relative;
   padding: 10px 10px 0;
+  margin-bottom: 80px;
   background: white;
   z-index: 1;
 }

@@ -38,6 +38,8 @@
         this.$window.resize(_.bind(_.throttle(this.resize, 100), this));
 
         this.banks.fetch();
+
+        $(window).scroll(_.debounce(_.bind(this.scrolled, this), 100));
       },
 
       showQs: function (e) {
@@ -113,16 +115,16 @@
         params.geopoint = this.geopoint;
 
         this.filteredBanks = this.banks.search(params);
-        banks = this.filteredBanks.slice(0, 10);
+        this.slicedBanks = banks = this.filteredBanks.slice(0, 10);
 
         _.each(banks, function (bank) {
-          html += BS.tmpl('bank_row', bank.attributes);
+          html += BS.tmpl('bank_info', bank.attributes);
         });
 
         this.$('.bank-list').html(html);
 
         if (banks.length) {
-          this.expandBank(banks[0]);
+          this.$('.bank-row').eq(0).addClass('selected');
         }
 
         this.trigger('filtered', this.filteredBanks);
@@ -145,10 +147,31 @@
 
         this.bankView = (new BS.View.Bank({bank: bank})).render();
 
-        this.$('.bank-list').append(this.bankView.$el);
+        //this.$('.bank-list').append(this.bankView.$el);
 
         this.bankView.show();
         //$(window).scrollTo($bankRow);
+      },
+
+      scrolled: function (e) {
+        var index, mapped;
+        var $rows = this.$('.bank-row');
+        var top = this.$window.scrollTop();
+
+        mapped = _.map($rows, function (row) {
+          return $(row).offset().top;
+        });
+        index = _.sortedIndex(mapped, top);
+
+        this.selectRow($rows.eq(index));
+      },
+
+      selectRow: function ($row) {
+        if (this.currentRow) {
+          this.currentRow.removeClass('selected');
+        }
+
+        this.currentRow = $row.addClass('selected');
       },
 
       resize: function (e) {
