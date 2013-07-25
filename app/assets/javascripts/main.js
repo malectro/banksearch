@@ -40,6 +40,8 @@
 
         $(window).scroll(_.debounce(_.bind(this.scrolled, this), 500));
 
+        // we shouldn't show the dialog until we have spanish copy
+        return;
         this.introModal = new BS.View.Modal();
         this.introModal.render();
       },
