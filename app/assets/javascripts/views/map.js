@@ -171,7 +171,7 @@
     },
 
     updateBounds: function () {
-      var bounds = BS.App.filteredBanks.geoBounds();
+      var bounds = BS.App.slicedBanks.geoBounds();
 
       if (bounds && bounds.ne.lat) {
         this.setBounds(bounds);
@@ -192,7 +192,7 @@
 
       this.markers = [];
 
-      BS.App.filteredBanks.each(function (bank) {
+      BS.App.slicedBanks.each(function (bank) {
         var geo = bank.get('geo'),
             marker = new Gmaps.Marker({
               map: self.gmap,
@@ -219,8 +219,8 @@
         };
       });
 
-      if (BS.App.filteredBanks.length) {
-        self.showInfo(BS.App.filteredBanks.first());
+      if (BS.App.slicedBanks.length) {
+        self.showInfo(BS.App.slicedBanks.first());
       }
     },
 

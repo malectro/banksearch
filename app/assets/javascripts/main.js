@@ -32,7 +32,7 @@
         this.map = new BS.View.Map({el: $('.g-map'), app: this});
 
         this.listenTo(this.banks, 'reset', this.filter);
-        this.listenTo(this.map, 'clickMarker', this.expandBank);
+        this.listenTo(this.map, 'clickMarker', this.showBank);
 
         this.$window.resize(_.bind(_.throttle(this.resize, 100), this));
 
@@ -114,7 +114,8 @@
         params.geopoint = this.geopoint;
 
         this.filteredBanks = this.banks.search(params);
-        this.slicedBanks = banks = this.filteredBanks.slice(0, 20);
+        banks = this.filteredBanks.slice(0, 20);
+        this.slicedBanks = new BS.List.Bank(banks);
 
         _.each(banks, function (bank) {
           html += BS.tmpl('bank_info', bank.attributes);
@@ -150,6 +151,11 @@
 
         this.bankView.show();
         //$(window).scrollTo($bankRow);
+      },
+
+      showBank: function (bank) {
+        var top = this.$('#bank-row-' + bank.id).offset().top;
+        this.$window.scrollTop(top - 85);
       },
 
       scrolled: function (e) {
