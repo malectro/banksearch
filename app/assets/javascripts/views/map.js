@@ -54,7 +54,7 @@
       }
 
       this.listenTo(this.options.app, 'filtered', _.debounce(this.updateBounds, 1000));
-      this.listenTo(this.options.app, 'clickBank', this.showInfo);
+      this.listenTo(this.options.app, 'selectedBank', this.showInfo);
       this.listenTo(this.options.app, 'resize', this.resize);
 
       self.resize();

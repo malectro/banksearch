@@ -23,7 +23,6 @@
         'change .search .address': 'changeAddress',
         'keydown .search .address': 'enterAddress',
         'click .search-button': 'changeAddress',
-        'click .bank-row': 'clickBank',
         'click .search-panel-open': 'showQs',
         'click .search-panel-hide': 'hideQs'
       },
@@ -39,7 +38,7 @@
 
         this.banks.fetch();
 
-        $(window).scroll(_.debounce(_.bind(this.scrolled, this), 100));
+        $(window).scroll(_.debounce(_.bind(this.scrolled, this), 500));
       },
 
       showQs: function (e) {
@@ -115,7 +114,7 @@
         params.geopoint = this.geopoint;
 
         this.filteredBanks = this.banks.search(params);
-        this.slicedBanks = banks = this.filteredBanks.slice(0, 10);
+        this.slicedBanks = banks = this.filteredBanks.slice(0, 20);
 
         _.each(banks, function (bank) {
           html += BS.tmpl('bank_info', bank.attributes);
@@ -124,7 +123,7 @@
         this.$('.bank-list').html(html);
 
         if (banks.length) {
-          this.$('.bank-row').eq(0).addClass('selected');
+          this.currentRow = this.$('.bank-row').eq(0).addClass('selected');
         }
 
         this.trigger('filtered', this.filteredBanks);
@@ -154,7 +153,7 @@
       },
 
       scrolled: function (e) {
-        var index, mapped;
+        var index, mapped, $row;
         var $rows = this.$('.bank-row');
         var top = this.$window.scrollTop();
 
@@ -163,7 +162,10 @@
         });
         index = _.sortedIndex(mapped, top);
 
-        this.selectRow($rows.eq(index));
+        $row = $rows.eq(index);
+
+        this.selectRow($row);
+        this.trigger('selectedBank', this.banks.get($row.data('id')));
       },
 
       selectRow: function ($row) {
