@@ -229,7 +229,8 @@
         this.currentInfo.setMap(null);
       }
 
-      bank.mapInfo.info.open(this.gmap, bank.mapInfo.marker);
+      // might not need this
+      //bank.mapInfo.info.open(this.gmap, bank.mapInfo.marker);
       this.currentInfo = bank.mapInfo.info;
       this.setCenter(bank.mapInfo.marker.position);
 
