@@ -2,7 +2,8 @@ class Admin::AdminController < ActionController::Base
   protect_from_forgery
 
   #activate this for production
-  #before_filter :authenticate
+  USERS = { "username" => "password" }
+  before_filter :authenticate
 
   layout "admin"
 
