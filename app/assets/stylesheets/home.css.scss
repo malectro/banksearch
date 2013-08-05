@@ -245,12 +245,18 @@ main {
     cursor: pointer;
   }
 
+body.about {
+  background: image-url('blurrymap.jpg') center no-repeat;
+  padding-bottom: 1px;
+}
 main.about {
-  top: 10px;
-  left: 50%;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 20px auto;
   width: 600px;
-  padding-bottom: 20px;
-  margin-left: -300px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
 
   h1 {
     position: relative;
@@ -266,3 +272,4 @@ main.about {
     margin-bottom: 20px;
   }
 }
+
