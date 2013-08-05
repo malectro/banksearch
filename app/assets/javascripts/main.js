@@ -22,6 +22,8 @@
         'change .search-panel select': 'filter',
         'change .search .address': 'changeAddress',
         'keydown .search .address': 'enterAddress',
+        'click .bank-row': 'clickBank',
+        'click .bank-info': 'clickBank',
         'click .search-button': 'changeAddress',
         'click .search-panel-open': 'showQs',
         'click .search-panel-hide': 'hideQs'
@@ -142,9 +144,8 @@
             id = $target.data('id'),
             bank = this.filteredBanks.get(id);
 
-        this.expandBank(bank);
-
-        this.trigger('clickBank', bank);
+        this.selectRow($('#bank-row-' + id));
+        this.trigger('selectedBank', bank);
       },
 
       expandBank: function (bank) {
@@ -165,7 +166,9 @@
         this.$window.scrollTop(top - 85);
       },
 
+      // this feature is still a little too jumpy
       scrolled: function (e) {
+        return;
         var index, mapped, $row;
         var $rows = this.$('.bank-row');
         var top = this.$window.scrollTop();
