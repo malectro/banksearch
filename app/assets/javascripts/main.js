@@ -30,6 +30,21 @@
       },
 
       initialize: function () {
+        $('.email').each(function () {
+          var $el = $(this);
+          var text = $el.text();
+          var $link = $('<a/>');
+
+          $link.attr('href', 'mailto:' + $el.data('email').replace('ON', '@').replace('DOT', '.'))
+            .text(text);
+
+          $el.html($link);
+        });
+
+        if (!$('body').hasClass('index')) {
+          return;
+        }
+
         this.banks = new BS.List.Bank;
         this.map = new BS.View.Map({el: $('.g-map'), app: this});
 
