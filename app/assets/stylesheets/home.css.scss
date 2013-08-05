@@ -244,3 +244,25 @@ main {
     color: $soft-color;
     cursor: pointer;
   }
+
+main.about {
+  top: 10px;
+  left: 50%;
+  width: 600px;
+  padding-bottom: 20px;
+  margin-left: -300px;
+
+  h1 {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+}
