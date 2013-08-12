@@ -1,8 +1,8 @@
 require 'csv'
 
-class Admin::BanksController < Admin::AdminController
+class Admin::BankCompaniesController < Admin::AdminController
   def index
-    @title = 'Banks'
+    @title = 'BankCompanies'
     @banks = Bank.all.limit(params[:limit]).offset(params[:offset])
     render json: @banks
   end

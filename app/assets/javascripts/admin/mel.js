@@ -27,6 +27,7 @@
         'click button': 'create',
         'click': 'anyClick',
         'keydown .search': 'filter',
+        'click .nav-models a': 'switchModel',
         'click .geocode': 'geocode',
         'click .import-csv': 'importCsv',
         'click .destroy-all': 'destroyAll'
@@ -38,6 +39,12 @@
 
       render: function () {
 
+      },
+
+      switchModel: function (e) {
+        var model = e.$target.data('model');
+        this.setSource(model);
+        e.preventDefault();
       },
 
       setSource: function (model) {

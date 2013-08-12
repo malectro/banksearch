@@ -32,12 +32,13 @@ nav {
   left: 0;
   padding: 10px 20px;
   width: 160px;
-  div {
+  .subtitle {
     margin-top: 10px;
     font-weight: bold;
   }
   a {
     display: block;
+    text-decoration: none;
   }
 }
 

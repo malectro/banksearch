@@ -14,6 +14,12 @@ Banksearch::Application.routes.draw do
         delete 'all'
       end
     end
+
+    resources :bank_companies do
+      collection do
+        delete 'all'
+      end
+    end
   end
 
   # The priority is based upon order of creation:

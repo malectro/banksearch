@@ -7,10 +7,10 @@ class Admin::AdminController < ActionController::Base
 
   layout "admin"
 
-  MODELS = [Bank]
+  MODELS = [Bank, BankCompany]
 
   def index
-
+    @title = 'Bank'
   end
 
 private
