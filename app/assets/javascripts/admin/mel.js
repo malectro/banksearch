@@ -34,7 +34,13 @@
       },
 
       initialize: function () {
+        var self = this;
         this.setSource('Bank');
+
+        this.companies = new Mel.Collection.BankCompany;
+        this.companies.fetch({success: function () {
+          self.companies_attrs = self.companies.toJSON();
+        }});
       },
 
       render: function () {

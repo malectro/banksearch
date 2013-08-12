@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.transit
 //= require underscore
+//= require lib/underscore_plugins
 //= require backbone
 //= require admin/mel
 //= require_dir admin/templates

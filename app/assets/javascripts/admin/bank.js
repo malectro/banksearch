@@ -120,7 +120,14 @@
     },
 
     render: function () {
-      this.$el.hide().html(Mel.tmpl('bank_form', this.model.attributes)).show();
+      var attrs = this.model.attributes;
+
+      attrs.companies = Mel.App.companies_attrs;
+      attrs.company_index = _.findIndex(attrs.companies, function (company) {
+        return company._id === attrs.bank_company_id;
+      });
+
+      this.$el.hide().html(Mel.tmpl('bank_form', attrs)).show();
       return this;
     },
 
@@ -138,6 +145,11 @@
         }
         delete data['geo:lat'];
         delete data['geo:lng'];
+      }
+
+      if (data.companies) {
+        delete data.companies;
+        delete data.company_index;
       }
 
       this.model.save(data);
