@@ -2,6 +2,8 @@ class Bank
   include Mongoid::Document
   include Mongoid::Spacial::Document
 
+  belongs_to :bank_company
+
   field :name, type: String
   field :address, type: String
   field :geo, type: Array, spacial: true

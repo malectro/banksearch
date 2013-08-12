@@ -3,7 +3,7 @@ class Admin::AdminController < ActionController::Base
 
   #activate this for production
   USERS = { "username" => "password" }
-  before_filter :authenticate
+  before_filter :authenticate if ENV['RAILS_ENV'] == 'production'
 
   layout "admin"
 
