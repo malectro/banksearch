@@ -3,7 +3,7 @@ require 'csv'
 class Admin::BanksController < Admin::AdminController
   def index
     @title = 'Banks'
-    @banks = Bank.all.limit(params[:limit]).offset(params[:offset])
+    @banks = Bank.all.sort(name: 1).limit(params[:limit]).skip(params[:offset])
     render json: @banks
   end
 

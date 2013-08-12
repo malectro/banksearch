@@ -2,7 +2,7 @@ class Admin::BankCompaniesController < Admin::AdminController
 
   def index
     @title = 'BankCompanies'
-    @bank_companys = BankCompany.all.limit(params[:limit]).offset(params[:offset])
+    @bank_companys = BankCompany.all.sort(name: 1).limit(params[:limit]).skip(params[:offset])
     render json: @bank_companys
   end
 
