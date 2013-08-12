@@ -30,6 +30,8 @@
       },
 
       initialize: function () {
+        var self = this;
+
         $('.email').each(function () {
           var $el = $(this);
           var text = $el.text();
@@ -53,7 +55,9 @@
 
         this.$window.resize(_.bind(_.throttle(this.resize, 100), this));
 
-        this.banks.fetch();
+        this.banks.fetch({success: function () {
+          self.filter();
+        }});
 
         $(window).scroll(_.debounce(_.bind(this.scrolled, this), 500));
 

@@ -53,6 +53,9 @@
         return (bank.get('name').toLowerCase().match(query)
           || bank.get('address').toLowerCase().match(query))
 
+          // safe stop
+          && (params.safe_stop && bank.get('ssa') || !params.safe_stop && !bank.get('ssa'))
+
           // minimum balance is less than balance given
           && bank.get('mb') <= params.mb
 
