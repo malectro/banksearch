@@ -42,7 +42,7 @@
       },
 
       switchModel: function (e) {
-        var model = e.$target.data('model');
+        var model = $(e.target).data('model');
         this.setSource(model);
         e.preventDefault();
       },
