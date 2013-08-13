@@ -238,12 +238,36 @@ main {
     margin-bottom: 10px;
   }
   .bank-more {
-    display: block;
-    height: 14px + 10px;
-    text-align: right;
-    color: $soft-color;
-    cursor: pointer;
+    &.on {
+      .bank-more-link {
+        display: none;
+      }
+      .bank-more-info {
+        display: block;
+      }
+    }
+
+    .bank-more-info {
+      display: none;
+    }
   }
+    .bank-more-link, .bank-less-link {
+      display: block;
+      height: 14px + 10px;
+      text-align: right;
+      color: $soft-color;
+
+      a {
+        cursor: pointer;
+      }
+      a:hover {
+        color: $nice-color;
+      }
+    }
+    .bank-more-info {
+      padding: 10px 0 0;
+      border-top: 1px dashed #ddd;
+    }
 
 body.about {
   background: image-url('blurrymap.jpg') center no-repeat;

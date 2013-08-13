@@ -26,7 +26,9 @@
         'click .bank-info': 'clickBank',
         'click .search-button': 'changeAddress',
         'click .search-panel-open': 'showQs',
-        'click .search-panel-hide': 'hideQs'
+        'click .search-panel-hide': 'hideQs',
+        'click .bank-more-link a': 'moreInfo',
+        'click .bank-less-link a': 'lessInfo'
       },
 
       initialize: function () {
@@ -183,6 +185,14 @@
       showBank: function (bank) {
         var top = this.$('#bank-row-' + bank.id).addClass('selected').offset().top;
         this.$window.scrollTop(top - 85);
+      },
+
+      moreInfo: function (e) {
+        $(e.target).parents('.bank-more').addClass('on');
+      },
+
+      lessInfo: function (e) {
+        $(e.target).parents('.bank-more').removeClass('on');
       },
 
       // this feature is still a little too jumpy
