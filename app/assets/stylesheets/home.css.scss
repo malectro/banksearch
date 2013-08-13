@@ -266,7 +266,12 @@ main {
     }
     .bank-more-info {
       padding: 10px 0 0;
-      border-top: 1px dashed #ddd;
+      position: relative;
+      left: -10px;
+      padding: 10px 10px 0;
+      width: 100%;
+      border-top: 2px solid $option-color;
+      box-shadow: 0 -2px $nice-color;
     }
 
 body.about {
