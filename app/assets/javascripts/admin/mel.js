@@ -113,29 +113,31 @@
 
       geocode: function () {
         function callback(result, status) {
+          _.delay(keepGoing, 500);
+        }
+
+        function start() {
+          var bank = self.dataList.at(i);
+
+          console.log(bank);
+          console.log(i, bank.get('geo'));
+
+          if (bank && (!bank.get('geo').lat || bank.get('geo').lat === 0.0)) {
+            console.log('geocodin\'');
+            bank.geocode(callback);
+          }
+          else {
+            keepGoing();
+          }
+        }
+
+        function keepGoing() {
           i++;
           if (i < self.dataList.length) {
             _.defer(start);
           }
           else {
             done();
-          }
-        }
-
-        function start() {
-          var bank = self.dataList.at(i);
-
-          if (bank && !bank.get('geo').lat) {
-            bank.geocode(callback);
-          }
-          else {
-            i++;
-            if (i < self.dataList.length) {
-              _.defer(start);
-            }
-            else {
-              done();
-            }
           }
         }
 

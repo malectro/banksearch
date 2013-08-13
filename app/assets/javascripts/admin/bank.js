@@ -33,6 +33,8 @@
             lng: results[0].geometry.location.lng()
           });
           self.save();
+        } else {
+          console.log('geocode: fail ' + status);
         }
 
         callback();
