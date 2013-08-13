@@ -32,7 +32,16 @@
           mapTypeControl: false,
           panControlOptions: {position: Gmaps.ControlPosition.RIGHT_CENTER},
           streetViewControlOptions: {position: Gmaps.ControlPosition.RIGHT_CENTER},
-          zoomControlOptions: {position: Gmaps.ControlPosition.RIGHT_CENTER}
+          zoomControlOptions: {position: Gmaps.ControlPosition.RIGHT_CENTER},
+          styles: [
+            {
+              elementType: 'geometry',
+              featureType: 'road.highway',
+              stylers: [
+                {color: '#00ff00'}
+              ]
+            }
+          ]
         });
 
         this.geoPosition();
