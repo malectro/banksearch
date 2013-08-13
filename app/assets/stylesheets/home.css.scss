@@ -207,14 +207,17 @@ main {
 .bank-row {
   @include floating-box-shadow;
   position: relative;
+  left: 0px;
   margin-top: 5px;
   padding: 5px 10px;
-  background: whitesmoke;
-  color: $soft-color;
+  width: 420px;
+  background: white;
   font-size: 16px;
   font-weight: normal;
   z-index: 2;
+  box-shadow: none;
   &.selected {
+    border: none;
     background: $ok-color;
     color: white;
   }
@@ -229,6 +232,7 @@ main {
   margin-bottom: 80px;
   background: white;
   z-index: 1;
+  border-top: 2px solid $option-color;
 }
   .bank-attr-name {
     font-size: 16px;
@@ -271,7 +275,7 @@ main {
       padding: 10px 10px 0;
       width: 100%;
       border-top: 2px solid $option-color;
-      box-shadow: 0 -2px $nice-color;
+      box-shadow: 0 -2px $ok-color;
     }
 
 body.about {
