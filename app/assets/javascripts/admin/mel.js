@@ -113,7 +113,7 @@
 
       geocode: function () {
         function callback(result, status) {
-          _.delay(keepGoing, 500);
+          _.delay(keepGoing, 1000);
         }
 
         function start() {
