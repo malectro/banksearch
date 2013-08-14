@@ -35,10 +35,52 @@
           zoomControlOptions: {position: Gmaps.ControlPosition.RIGHT_CENTER},
           styles: [
             {
-              elementType: 'geometry',
-              featureType: 'road.highway',
+              elementType: 'geometry.fill',
+              featureType: 'road',
               stylers: [
-                {color: '#00ff00'}
+                {color: '#ffffff'}
+              ]
+            },
+            {
+              elementType: 'geometry.stroke',
+              featureType: 'road',
+              stylers: [
+                {color: '#bbbbbb'}
+              ]
+            },
+            {
+              elementType: 'labels.text.fill',
+              featureType: 'road',
+              stylers: [
+                {color: '#333333'}
+              ]
+            },
+            {
+              elementType: 'labels.text.stroke',
+              featureType: 'road',
+              stylers: [
+                {color: '#ffffff'}
+              ]
+            },
+            {
+              elementType: 'geometry',
+              featureType: 'landscape.natural',
+              stylers: [
+                {color: '#b5d6ab'}
+              ]
+            },
+            {
+              elementType: 'geometry',
+              featureType: 'landscape.man_made',
+              stylers: [
+                {color: '#dddddd'}
+              ]
+            },
+            {
+              elementType: 'geometry',
+              featureType: 'water',
+              stylers: [
+                {color: '#c3ebfd'}
               ]
             }
           ]
