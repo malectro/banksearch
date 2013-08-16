@@ -183,7 +183,10 @@
       },
 
       showBank: function (bank) {
-        var top = this.$('#bank-row-' + bank.id).addClass('selected').offset().top;
+        var $row = this.$('#bank-row-' + bank.id);
+        var top = $row.addClass('selected').offset().top;
+
+        this.selectRow($row);
         this.$window.scrollTop(top - 85);
       },
 
