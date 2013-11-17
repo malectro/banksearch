@@ -21,9 +21,6 @@ h1 {
 
 main {
   display: block;
-  position: absolute;
-  left: 20px;
-  top: 80px;
   width: 450px;
   font-size: 14px;
   z-index: 10;
@@ -38,8 +35,7 @@ main {
   font-size: 10px;
   background: white;
   background: rgba(255, 255, 255, 0.8);
-  z-index: 2;
-  box-shadow: 0 0 
+  z-index: 11;
 }
 
 .search {
@@ -47,6 +43,7 @@ main {
   top: 20px;
   right: 20px;
   width: 470px;
+  z-index: 11;
 
   .address {
     @include floating-box-shadow;
@@ -202,7 +199,8 @@ main {
 
 .bank-list {
   position: relative;
-  margin-bottom: 20px;
+  margin: 90px 0 20px 20px;
+  z-index: 10;
 }
 .bank-row {
   @include floating-box-shadow;
