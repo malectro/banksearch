@@ -5,18 +5,21 @@
 
 <div class="bank-info" data-id="<%= _id %>">
   <% if (phone) { %>
+    <div class="bank-attr-icon bank-attr-icon-phone"></div>
     <div class="bank-attr-name">Phone</div>
-    <div class="bank-attr"><%= phone %></div>
+    <div class="bank-attr bank-attr-phone"><%= phone %></div>
   <% } %>
 
   <% if (hours) { %>
+    <div class="bank-attr-icon bank-attr-icon-hours"></div>
     <div class="bank-attr-name">Hours</div>
-    <div class="bank-attr"><%= hours %></div>
+    <div class="bank-attr bank-attr-hours"><%= hours %></div>
   <% } %>
 
   <% if (notes) { %>
+    <div class="bank-attr-icon"></div>
     <div class="bank-attr-name">Info</div>
-    <div class="bank-attr"><%= notes %></div>
+    <div class="bank-attr bank-attr-notes"><%= notes %></div>
   <% } %>
 
   <div class="bank-more">
