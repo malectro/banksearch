@@ -234,6 +234,12 @@ main {
   z-index: 1;
   border-top: 2px solid $option-color;
 }
+  .bank-attr-icon {
+    float: left;
+    width: 30px;
+    height: 50px;
+    margin-right: 5px;
+  }
   .bank-attr-name {
     font-size: 16px;
     color: $nice-color;
@@ -241,6 +247,14 @@ main {
   .bank-attr {
     margin-bottom: 10px;
   }
+    .bank-attr-icon-phone {
+      background: image-url('icon-cell.png') no-repeat center 5px;
+      background-size: auto 30px;
+    }
+    .bank-attr-icon-hours {
+      background: image-url('icon-time.png') no-repeat 0px 5px;
+      background-size: auto 25px;
+    }
   .bank-more {
     &.on {
       .bank-more-link {
