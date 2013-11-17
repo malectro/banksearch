@@ -3,19 +3,15 @@ $mapFrameWidth: 495px;
 $mapFrameHeight: 600px;
 
 h1 {
-  @include floating-box-shadow;
-  @include text-impress;
   position: fixed;
   top: 20px;
   left: 20px;
-  width: 256px;
+  width: 471px;
   height: 60px;
-  font-size: 48px;
-  font-weight: 300;
-  line-height: 60px;
-  text-align: center;
-  background: #6FC113;
-  color: white;
+  background: image-url('logo.png') no-repeat center;
+  background-size: auto 100%;
+  text-indent: -10000px;
+  overflow: hidden;
   z-index: 11;
 }
 
