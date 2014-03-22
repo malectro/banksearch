@@ -251,6 +251,14 @@ main {
       background: image-url('icon-time.png') no-repeat 0px 5px;
       background-size: auto 25px;
     }
+    .bank-attr-url {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: $ok-color;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   .bank-more {
     &.on {
       .bank-more-link {

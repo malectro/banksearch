@@ -6,6 +6,7 @@ class Bank
 
   field :name, type: String
   field :address, type: String
+  field :url, type: String
   field :geo, type: Array, spacial: true
   field :zip, type: Integer
   field :phone, type: Integer

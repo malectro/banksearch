@@ -16,6 +16,14 @@
     <div class="bank-attr bank-attr-hours"><%= hours %></div>
   <% } %>
 
+  <% if (url) { %>
+    <div class="bank-attr-icon"></div>
+    <div class="bank-attr-name">Website</div>
+    <div class="bank-attr bank-attr-url">
+      <a href="<%= url %>" target="_blank"><%- url %></a>
+    </div>
+  <% } %>
+
   <% if (notes) { %>
     <div class="bank-attr-icon"></div>
     <div class="bank-attr-name">Info</div>
