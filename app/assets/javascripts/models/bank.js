@@ -4,9 +4,16 @@
 
     fattributes: function () {
       var attrs = _.clone(this.attributes);
+      var company = this.company();
 
       attrs.phone = ('' + attrs.phone);
       attrs.phone = '(' + attrs.phone.slice(0, 3) + ') ' + attrs.phone.slice(3, 6) + '-' + attrs.phone.slice(6, 10);
+
+      if (company) {
+        attrs.info = this.company().get('info');
+      } else {
+        attrs.info = '';
+      }
 
       return attrs;
     },
@@ -23,6 +30,10 @@
       }
 
       return response;
+    },
+
+    company: function () {
+      return BS.App.bank_companies.get(this.get('bank_company_id'));
     }
   });
 

@@ -50,6 +50,7 @@
         }
 
         this.banks = new BS.List.Bank;
+        this.bank_companies = new BS.List.BankCompany;
         this.map = new BS.View.Map({el: $('.g-map'), app: this});
 
         this.listenTo(this.banks, 'reset', this.filter);
@@ -57,16 +58,18 @@
 
         this.$window.resize(_.bind(_.throttle(this.resize, 100), this));
 
-        this.banks.fetch({success: function () {
-          self.filter();
-        }});
-
         $(window).scroll(_.debounce(_.bind(this.scrolled, this), 500));
 
         // we shouldn't show the dialog until we have spanish copy
         return;
         this.introModal = new BS.View.Modal();
         this.introModal.render();
+      },
+
+      fetch: function () {
+        var filter = _.after(2, _.bind(this.filter, this));
+        this.banks.fetch({success: filter});
+        this.bank_companies.fetch({success: filter});
       },
 
       showQs: function (e) {
@@ -146,7 +149,7 @@
         this.slicedBanks = new BS.List.Bank(banks);
 
         _.each(banks, function (bank) {
-          html += BS.tmpl('bank_info', bank.attributes);
+          html += BS.tmpl('bank_info', bank.fattributes());
         });
 
         this.$('.bank-list').html(html);
@@ -230,6 +233,7 @@
     });
 
     BS.App = new BankSearch;
+    BS.App.fetch();
   });
 }());
 
