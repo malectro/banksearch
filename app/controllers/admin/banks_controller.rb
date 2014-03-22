@@ -53,13 +53,12 @@ class Admin::BanksController < Admin::AdminController
       }) do |row|
         attrs = {
           name: row[0],
-          address: row[1],
-          zip: row[2],
-          phone: row[3],
-          ssh: row[4],
-          ssa: row[5],
+          url: row[1],
+          address: row[2],
+          zip: row[3],
+          phone: row[4],
+          ssh: row[5],
           mf: row[6],
-          yf: 0,
           mb: row[7],
           od: row[8],
           of: row[9],
@@ -67,7 +66,15 @@ class Admin::BanksController < Admin::AdminController
           gid: row[11],
           ssitn: row[12],
           notes: row[13],
-          hours: row[14]
+          hours: row[14],
+          esp: row[15],
+          ssa: 0,
+          yf: 0
+        }
+
+        company_attrs = {
+          name: row[0],
+          info: row[16]
         }
 
         # normalize phones
@@ -89,6 +96,15 @@ class Admin::BanksController < Admin::AdminController
         end
 
         attrs[:ssitn] = ssitn_map[attrs[:ssitn]]
+
+        company = BankCompany.find_or_create_by({
+          name: company_attrs[:name]
+        })
+
+        company.info = company_attrs[:info]
+        company.save
+
+        attrs[:bank_company_id] = company.id
 
         bank = Bank.new(attrs)
 

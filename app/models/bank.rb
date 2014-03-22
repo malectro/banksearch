@@ -18,6 +18,7 @@ class Bank
   field :of, as: :opening_fee, type: Float
   field :ob, as: :online_bank, type: Boolean
   field :gid, as: :government_id, type: Boolean
+  field :esp, as: :spanish, type: Boolean
   field :ssitn, type: Symbol
   field :notes, type: String
   field :hours, type: String
