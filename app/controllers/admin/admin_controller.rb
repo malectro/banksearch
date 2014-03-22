@@ -2,7 +2,7 @@ class Admin::AdminController < ActionController::Base
   protect_from_forgery
 
   #activate this for production
-  USERS = { "username" => "password" }
+  USERS = { "melanie" => "downwithcheckcashing" }
   before_filter :authenticate if ENV['RAILS_ENV'] == 'production'
 
   layout "admin"
