@@ -90,6 +90,7 @@ main {
   }
 
   .search-panel-hide {
+    padding: 10px;
     text-align: right;
     color: $soft-color;
   }
@@ -97,15 +98,17 @@ main {
   .search-panel {
     @extend .clearfix;
     @include floating-box-shadow;
-    padding: 10px 10px 5px;
+    padding: 0;
     background: white;
     font-size: 14px;
 
     label {
       display: block;
-      margin-right: 30px;
-      margin-bottom: 10px;
+      padding: 5px 40px 5px 10px;
       color: $nice-color;
+      &:nth-child(odd) {
+        background: #eee;
+      }
     }
 
     .currency {
@@ -124,7 +127,7 @@ main {
       background: transparent;
       color: white;
       box-shadow: none;
-      padding: 2px 5px;
+      padding: 5px;
       width: 50px;
       font-size: inherit;
 
