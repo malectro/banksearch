@@ -26,7 +26,9 @@
     <div class="bank-more-link"><a>more info</a></div>
     <div class="bank-more-info">
       <div class="bank-attr-name">More Info</div>
-      <% if (ssa || ssh) { %>
+      <% if (info) { %>
+        <%- info %>
+      <% } else if (ssa || ssh) { %>
       This is a SafeStart location. You should be able go here to open an Amalgamated SafeStart Account, but call and ask 
 before you go. You need to have an ITIN or a Social Security Card to open an account here. It has no monthly fee 
 or minimum balance. You need $5 to open an account. You need a government-issued ID from the US or from another country. 

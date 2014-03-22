@@ -4,6 +4,7 @@ Banksearch::Application.routes.draw do
   get '/about', to: "home#about", as: 'about'
 
   resources :banks, only: [:index, :show]
+  resources :bank_companies, only: [:index, :show]
 
   namespace :admin do
     root to: 'admin#index'
