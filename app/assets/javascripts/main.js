@@ -145,7 +145,7 @@
         params.geopoint = this.geopoint;
 
         this.filteredBanks = this.banks.search(params);
-        banks = this.filteredBanks.slice(0, 20);
+        banks = this.filteredBanks.slice(0, 300);
         this.slicedBanks = new BS.List.Bank(banks);
 
         _.each(banks, function (bank) {
