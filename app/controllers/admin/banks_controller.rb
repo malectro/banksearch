@@ -84,12 +84,12 @@ class Admin::BanksController < Admin::AdminController
         attrs[:mf] = attrs[:mf][/\d+/].to_i
 
         # yearly fee?
-        if match = attrs[:of].match(/(\d) Annual/)
+        if attrs[:of] and match = attrs[:of].match(/(\d) Annual/)
           attrs[:yf] = match[1].to_i
         end
 
         # one-time opening fee?
-        if match = attrs[:of].match(/(\d) OT/)
+        if attrs[:of] and match = attrs[:of].match(/(\d) OT/)
           attrs[:of] = match[1].to_i
         else
           attrs[:of] = 0
